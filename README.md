@@ -1,25 +1,163 @@
+# 抽烟警示模组 / Smoking Warning Mod
 
-Installation information
-=======
+[![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-green)](https://minecraft.net)
+[![NeoForge](https://img.shields.io/badge/Mod%20Loader-NeoForge-orange)](https://neoforged.net)
+[![Java](https://img.shields.io/badge/Java-21-blue)](https://adoptium.net)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+**作者：寿云** · [B站主页](https://space.bilibili.com/1832031043)
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+## 简介
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+抽烟警示模组是一个面向 **Minecraft 1.21.1 + NeoForge** 的生存扩展模组。
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+模组围绕烟草种植、烟草加工、香烟制作、吸烟行为、成瘾惩罚、肺癌阶段、治疗系统、HUD 展示和村庄禁烟区等内容展开。本模组的主题**不是鼓励吸烟**，而是通过游戏机制表现吸烟带来的危害——**短暂收益，长期代价**。
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+> Smoking Warning Mod is a survival expansion mod for Minecraft 1.21.1 with NeoForge. It adds tobacco farming, processing, cigarettes, addiction, lung cancer, treatment, HUD display, and village no-smoking zones. The mod is designed around short-term benefits and long-term consequences to warn about the harms of smoking.
+
+---
+
+## 重要声明
+
+本模组中的吸烟、烟草、肺癌、治疗等内容均为**游戏机制和健康警示创作**，不构成现实医学建议，也**不鼓励现实中吸烟**。
+
+如果现实生活中存在健康问题，请寻求专业医生帮助。
+
+**吸烟有害健康。**
+
+---
+
+## 支持环境
+
+| 项目 | 版本 |
+|------|------|
+| Minecraft | 1.21.1 |
+| Mod Loader | NeoForge |
+| Java | 21 |
+| 必需前置 | 无 |
+
+**可选兼容（非必需）：**
+- [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) — 配方查询
+- [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) — 方块信息显示
+
+---
+
+## 主要内容
+
+### 烟草种植
+
+新增烟草作物，可在耕地上种植烟草种子。烟草作物有 7 个生长阶段，成熟后可收获烟草叶。
+
+### 烟草加工链
+
+```
+烟草叶 → [晾晒架] → 干烟草叶 → [研磨台] → 烟丝 → [烟草工作台] → 香烟
+```
+
+### 香烟系统
+
+- **普通香烟** — 基础香烟，抽完后获得短暂加速和急迫效果
+- **多种特殊香烟** — 薄荷、蜂蜜、烈焰、幻翼、末影、荧光、红石、下界合金等，各有不同效果
+- **彩蛋香烟** — 华子、荷花、瑞克五代等趣味香烟
+- 每支香烟有耐久值，抽完后留下烟蒂
+- 抽烟后获得短暂正面奖励，但随成瘾程度加深，奖励效果逐渐衰减
+
+### 成瘾系统
+
+| 阶段 | 已抽完香烟数 | 惩罚 |
+|------|------------|------|
+| 未成瘾 | 0-4 支 | 无 |
+| 轻度成瘾 | 5-9 支 | 偶尔咳嗽 |
+| 中度成瘾 | 10-19 支 | 咳嗽加重、虚弱、挖掘疲劳、最大生命值下降 |
+| 重度成瘾/肺癌 | 20 支以上 | 严重咳嗽、肺癌效果、继续抽烟扣血 |
+
+成瘾阶段越高，惩罚越严重，香烟的正面奖励也越弱。
+
+### 治疗系统
+
+肺癌不能靠一个物品瞬间治好。治疗是一个**成本高、周期长、过程痛苦**的过程，并且必须停止抽烟。
+
+治疗流程：
+
+1. **确诊** — 使用肺部检查仪（需处于重度成瘾或肺癌阶段）
+2. **化疗** — 使用化疗药剂控制病情（+10% 治疗进度，有副作用）
+3. **放疗** — 使用放疗核心进行治疗（需进度 ≥20%，+20% 进度）
+4. **靶向治疗** — 使用靶向治疗药推进治疗（需进度 ≥40%，+25% 进度）
+5. **康复计划** — 使用康复计划书进入康复阶段（需进度 ≥80%）
+6. 连续 **3 个 Minecraft 天** 不抽烟
+7. 肺癌进入缓解状态，但成瘾记录**不会完全清空**
+
+治疗期间继续抽烟会导致治疗进度下降；康复期间抽烟会导致病情回退。
+
+### 治疗手册
+
+玩家可以从**大师级烟草村民**处购买《肺癌治疗手册》，右键打开后可以查看完整的治疗流程说明。手册使用原版书与笔的阅读界面。
+
+### 村庄禁烟区
+
+- 村庄是禁烟区，进入时会收到提示
+- 在村庄区域吸烟会**激怒铁傀儡**
+- 铁傀儡会攻击正在吸烟的玩家
+- 烟民在村庄里请自重
+
+### HUD 系统
+
+- 屏幕左上角显示抽烟次数和成瘾阶段
+- 进度条显示距离下一阶段的距离
+- 肺癌阶段显示危险警告
+- 按 **H** 键进入 HUD 编辑模式，可拖动位置和调整大小
+
+### 信息类模组兼容
+
+- **JEI** — 可查看烟草加工配方、治疗物品合成配方
+- **Jade** — 可查看晾晒架叶片数量、干燥进度、工作台信息等
+
+---
+
+## 配方
+
+### 加工方块合成
+
+| 方块 | 配方 |
+|------|------|
+| 晾晒架 | 木棍 + 木板 |
+| 研磨台 | 圆石 + 木板 |
+| 烟草工作台 | 木板 + 工作台 |
+
+### 治疗物品合成
+
+| 物品 | 材料 |
+|------|------|
+| 肺部检查仪 | 铁锭 + 玻璃板 + 红石 + 铜锭 |
+| 化疗药剂 | 毒马铃薯 + 荧石粉 + 糖 + 玻璃瓶 |
+| 放疗核心 | 紫水晶碎片 + 红石块 + 铁锭 + 玻璃 |
+| 靶向治疗药 | 金苹果 + 绿宝石 + 荧石粉 + 蜂蜜瓶 |
+| 康复计划书 | 书 + 纸 + 绿宝石 + 羽毛 |
+
+---
+
+## 指令
+
+以下指令仅用于开发测试，正式游玩不需要使用（需要 OP 权限）：
+
+```
+/tobacco find        — 查找并传送到最近的烟草村民或烟草工作台
+/tobacco spawn       — 在玩家身边生成一个烟草村民和工作台
+/tobacco debug spawn_villager_house — 在玩家脚下生成测试用烟草小屋
+```
+
+---
+
+## 许可证
+
+本项目使用 [MIT License](LICENSE) 开源。
+
+---
+
+## 免责声明
+
+本模组**不鼓励现实中吸烟**。
+
+吸烟有害健康。
+
+模组中的治疗内容仅为游戏机制，不是医学建议。如果有健康问题，请咨询专业医生。

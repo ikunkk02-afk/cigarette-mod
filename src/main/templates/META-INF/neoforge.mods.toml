@@ -46,7 +46,7 @@ authors="寿云"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-A base smoking warning mod that models cigarettes as short-lived relief with addiction, lung damage, withdrawal, and secondhand smoke risks.
+	Smoking Warning Mod is a survival expansion mod for Minecraft 1.21.1 with NeoForge. It adds tobacco farming, processing, multiple cigarette types, addiction stages (light/medium/heavy), lung cancer penalties, a full treatment progression system (diagnosis, chemotherapy, radiotherapy, targeted therapy, rehabilitation), HUD display, village no-smoking zones with iron golem aggression, and a tobacco villager profession with trading. The mod is designed around short-term benefits and long-term consequences to warn players about the harms of smoking. It does not encourage smoking and is not medical advice. 抽烟警示模组是一个面向Minecraft 1.21.1+NeoForge的生存扩展模组，加入了烟草种植、烟草加工、香烟系统、成瘾惩罚、肺癌阶段、治疗流程、HUD展示、村庄禁烟区和烟草村民等内容。模组通过短暂收益长期代价的机制表现吸烟危害。本模组仅用于游戏机制创作和健康警示，不鼓励现实中吸烟，也不构成医学建议。
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
