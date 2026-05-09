@@ -42,7 +42,7 @@ displayName="${mod_name}" #mandatory
 #credits="" #optional
 
 # The authors of the mod, displayed in the mod UI (optional)
-authors="寿云"
+authors="寿云, ChatGPT, DeepSeek"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''

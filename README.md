@@ -7,6 +7,8 @@
 
 **作者：寿云** · [B站主页](https://space.bilibili.com/1832031043)
 
+**贡献者：** 寿云、ChatGPT、DeepSeek
+
 ## 简介
 
 抽烟警示模组是一个面向 **Minecraft 1.21.1 + NeoForge** 的生存扩展模组。
