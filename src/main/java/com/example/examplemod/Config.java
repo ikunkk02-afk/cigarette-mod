@@ -218,12 +218,12 @@ public class Config {
             .defineInRange("targetedTherapyProgress", 25, 1, 100);
 
     public static final ModConfigSpec.IntValue TREATMENT_COOLDOWN_TICKS = BUILDER
-            .comment("Cooldown in ticks between major treatment items (1 Minecraft day = 24000 ticks).")
-            .defineInRange("treatmentCooldownTicks", 24000, 0, 720000);
+            .comment("Cooldown in ticks between major treatment items (6000 ticks = ~5 minutes).")
+            .defineInRange("treatmentCooldownTicks", 6000, 0, 720000);
 
     public static final ModConfigSpec.IntValue REHAB_REQUIRED_SMOKE_FREE_TICKS = BUILDER
-            .comment("Ticks the player must stay smoke-free during rehabilitation (3 Minecraft days = 72000 ticks).")
-            .defineInRange("rehabRequiredSmokeFreeTicks", 72000, 12000, 720000);
+            .comment("Ticks the player must stay smoke-free during rehabilitation (12000 ticks = ~10 minutes).")
+            .defineInRange("rehabRequiredSmokeFreeTicks", 12000, 6000, 720000);
 
     public static final ModConfigSpec.IntValue SMOKING_DURING_TREATMENT_PROGRESS_PENALTY = BUILDER
             .comment("Treatment progress lost when smoking during treatment.")

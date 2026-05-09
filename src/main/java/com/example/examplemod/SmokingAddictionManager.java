@@ -66,6 +66,12 @@ public final class SmokingAddictionManager {
             return;
         }
 
+        // Show treatment guide hint even if player loaded into HEAVY stage
+        if (stage >= STAGE_HEAVY && !data.hasShownTreatmentGuideHint()) {
+            data.setHasShownTreatmentGuideHint(true);
+            player.displayClientMessage(Component.translatable("message.cigarettemod.lung_cancer.guide_hint"), false);
+        }
+
         if (player.tickCount % EFFECT_REFRESH_TICKS == 0) {
             applyStageEffects(player, data, stage);
         }

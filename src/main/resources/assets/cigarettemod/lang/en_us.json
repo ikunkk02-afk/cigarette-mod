@@ -248,5 +248,9 @@
   "guide.cigarettemod.treatment.page.8": "Village No-Smoking Reminder\n\nVillages are no-smoking zones.\nSmoking in dense village areas will anger the iron golems.\nIron golems will attack smoking players.\nDo not smoke in villages.",
   "message.cigarettemod.village.no_smoking_enter": "You have entered a village no-smoking zone. Please do not smoke here.",
   "cigarettemod.configuration.enableVillageNoSmokingEnterHint": "Enable No-Smoking Zone Enter Hint",
-  "cigarettemod.configuration.villageNoSmokingEnterHintCooldownTicks": "Enter Hint Cooldown Ticks"
+  "cigarettemod.configuration.villageNoSmokingEnterHintCooldownTicks": "Enter Hint Cooldown Ticks",
+  "command.cigarettemod.tobacco.found_villager": "Found tobacco villager, teleported to (%s, %s, %s)",
+  "command.cigarettemod.tobacco.found_workbench": "Found tobacco workbench, teleported to (%s, %s, %s)",
+  "command.cigarettemod.tobacco.not_found": "No tobacco villager or workbench found nearby",
+  "command.cigarettemod.tobacco.spawned": "Spawned tobacco villager and workbench at your location"
 }
