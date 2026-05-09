@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " T ",
+    "PCP",
+    " P "
+  ],
+  "key": {
+    "T": {
+      "item": "cigarettemod:tobacco_leaf"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "C": {
+      "item": "minecraft:crafting_table"
+    }
+  },
+  "result": {
+    "id": "cigarettemod:tobacco_workbench",
+    "count": 1
+  }
+}

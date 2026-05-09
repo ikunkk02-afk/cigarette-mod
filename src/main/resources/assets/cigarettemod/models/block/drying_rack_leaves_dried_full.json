@@ -1,0 +1,8 @@
+{
+  "parent": "cigarettemod:block/drying_rack_leaves_fresh_full",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cigarettemod:block/drying_rack_leaf_dry",
+    "leaf": "cigarettemod:block/drying_rack_leaf_dry"
+  }
+}

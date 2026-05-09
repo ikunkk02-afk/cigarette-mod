@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "cigarettemod:block/tobacco_grinder_side",
+    "side": "cigarettemod:block/tobacco_grinder_side",
+    "top": "cigarettemod:block/tobacco_grinder_top",
+    "bottom": "cigarettemod:block/tobacco_grinder_bottom",
+    "stone": "cigarettemod:block/tobacco_grinder_stone",
+    "bowl": "cigarettemod:block/tobacco_grinder_bowl",
+    "shreds": "cigarettemod:block/tobacco_grinder_shreds",
+    "blade": "cigarettemod:block/tobacco_grinder_blade"
+  },
+  "elements": [
+    { "from": [1, 0, 1], "to": [15, 3, 15], "faces": { "north": { "texture": "#side", "uv": [0, 0, 14, 3] }, "south": { "texture": "#side", "uv": [0, 0, 14, 3] }, "west": { "texture": "#side", "uv": [0, 0, 14, 3] }, "east": { "texture": "#side", "uv": [0, 0, 14, 3] }, "up": { "texture": "#top", "uv": [0, 0, 16, 16] }, "down": { "texture": "#bottom", "uv": [0, 0, 16, 16] } } },
+    { "from": [2, 3, 2], "to": [14, 8, 14], "faces": { "north": { "texture": "#side", "uv": [1, 3, 13, 8] }, "south": { "texture": "#side", "uv": [1, 3, 13, 8] }, "west": { "texture": "#side", "uv": [1, 3, 13, 8] }, "east": { "texture": "#side", "uv": [1, 3, 13, 8] }, "up": { "texture": "#top", "uv": [1, 1, 15, 15] }, "down": { "texture": "#bottom", "uv": [1, 1, 15, 15] } } },
+    { "from": [3.5, 8, 3.5], "to": [9.5, 10, 9.5], "faces": { "north": { "texture": "#stone", "uv": [3, 8, 9, 10] }, "south": { "texture": "#stone", "uv": [3, 8, 9, 10] }, "west": { "texture": "#stone", "uv": [3, 8, 9, 10] }, "east": { "texture": "#stone", "uv": [3, 8, 9, 10] }, "up": { "texture": "#stone", "uv": [3, 3, 13, 13] }, "down": { "texture": "#stone", "uv": [3, 3, 13, 13] } } },
+    { "from": [10, 8, 4], "to": [13.5, 9.5, 7.5], "faces": { "north": { "texture": "#bowl", "uv": [0, 0, 8, 4] }, "south": { "texture": "#bowl", "uv": [0, 0, 8, 4] }, "west": { "texture": "#bowl", "uv": [0, 0, 4, 4] }, "east": { "texture": "#bowl", "uv": [0, 0, 4, 4] }, "up": { "texture": "#bowl", "uv": [0, 0, 8, 8] }, "down": { "texture": "#bowl", "uv": [0, 0, 8, 8] } } },
+    { "from": [9.5, 8, 9.5], "to": [13, 9, 12.5], "faces": { "north": { "texture": "#shreds", "uv": [0, 0, 8, 3] }, "south": { "texture": "#shreds", "uv": [0, 0, 8, 3] }, "west": { "texture": "#shreds", "uv": [0, 0, 3, 3] }, "east": { "texture": "#shreds", "uv": [0, 0, 3, 3] }, "up": { "texture": "#shreds", "uv": [0, 0, 8, 8] }, "down": { "texture": "#shreds", "uv": [0, 0, 8, 8] } } },
+    { "from": [4, 10, 10.5], "to": [10, 10.5, 11.5], "rotation": { "origin": [7, 10, 11], "axis": "y", "angle": -22.5 }, "faces": { "north": { "texture": "#blade", "uv": [0, 0, 8, 1] }, "south": { "texture": "#blade", "uv": [0, 0, 8, 1] }, "west": { "texture": "#blade", "uv": [0, 0, 1, 1] }, "east": { "texture": "#blade", "uv": [0, 0, 1, 1] }, "up": { "texture": "#blade", "uv": [0, 0, 8, 2] }, "down": { "texture": "#blade", "uv": [0, 0, 8, 2] } } }
+  ]
+}

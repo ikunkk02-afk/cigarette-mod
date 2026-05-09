@@ -1,0 +1,13 @@
+{
+  "type": "cigarettemod:tobacco_workbench_recipe",
+  "first": {
+    "item": "cigarettemod:cigarette"
+  },
+  "second": {
+    "item": "minecraft:honey_bottle"
+  },
+  "result": {
+    "id": "cigarettemod:honey_cigarette",
+    "count": 1
+  }
+}

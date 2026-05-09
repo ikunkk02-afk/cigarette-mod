@@ -1,0 +1,13 @@
+{
+  "type": "cigarettemod:tobacco_workbench_recipe",
+  "first": {
+    "item": "cigarettemod:cigarette"
+  },
+  "second": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "cigarettemod:huazi_cigarette",
+    "count": 1
+  }
+}

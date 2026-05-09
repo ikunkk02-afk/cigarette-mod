@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "cigarettemod:block/tobacco_workbench_side",
+    "down": "cigarettemod:block/tobacco_workbench_bottom",
+    "up": "cigarettemod:block/tobacco_workbench_top",
+    "north": "cigarettemod:block/tobacco_workbench_side",
+    "south": "cigarettemod:block/tobacco_workbench_side",
+    "west": "cigarettemod:block/tobacco_workbench_side",
+    "east": "cigarettemod:block/tobacco_workbench_side"
+  }
+}

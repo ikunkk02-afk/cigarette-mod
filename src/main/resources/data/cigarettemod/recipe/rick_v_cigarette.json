@@ -1,0 +1,13 @@
+{
+  "type": "cigarettemod:tobacco_workbench_recipe",
+  "first": {
+    "item": "cigarettemod:ender_cigarette"
+  },
+  "second": {
+    "item": "minecraft:netherite_scrap"
+  },
+  "result": {
+    "id": "cigarettemod:rick_v_cigarette",
+    "count": 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "cigarettemod:block/drying_rack_leaf_fresh",
+    "leaf": "cigarettemod:block/drying_rack_leaf_fresh"
+  },
+  "elements": [
+    { "from": [4, 6.5, 4.5], "to": [6.5, 9.5, 6], "faces": { "north": { "texture": "#leaf", "uv": [0, 0, 5, 8] }, "south": { "texture": "#leaf", "uv": [0, 0, 5, 8] }, "west": { "texture": "#leaf", "uv": [0, 0, 3, 8] }, "east": { "texture": "#leaf", "uv": [0, 0, 3, 8] }, "up": { "texture": "#leaf", "uv": [0, 0, 5, 3] }, "down": { "texture": "#leaf", "uv": [0, 0, 5, 3] } } },
+    { "from": [9.5, 6.5, 7.5], "to": [12, 9.5, 9], "faces": { "north": { "texture": "#leaf", "uv": [5, 0, 10, 8] }, "south": { "texture": "#leaf", "uv": [5, 0, 10, 8] }, "west": { "texture": "#leaf", "uv": [0, 0, 3, 8] }, "east": { "texture": "#leaf", "uv": [0, 0, 3, 8] }, "up": { "texture": "#leaf", "uv": [5, 0, 10, 3] }, "down": { "texture": "#leaf", "uv": [5, 0, 10, 3] } } }
+  ]
+}
