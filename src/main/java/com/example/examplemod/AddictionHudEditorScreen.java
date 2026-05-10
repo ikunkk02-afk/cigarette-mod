@@ -22,7 +22,7 @@ public class AddictionHudEditorScreen extends Screen {
     private Button resetButton;
 
     public AddictionHudEditorScreen() {
-        super(Component.translatable("screen.SmokingWarningMod.hud_editor.title"));
+        super(Component.translatable("screen.smokingwarningmod.hud_editor.title"));
     }
 
     @Override
@@ -31,7 +31,7 @@ public class AddictionHudEditorScreen extends Screen {
         this.hudX = AddictionHudRenderer.currentX(this.width, this.hudScale);
         this.hudY = AddictionHudRenderer.currentY(this.height, ClientAddictionHudData.snapshot(), this.hudScale);
 
-        this.resetButton = Button.builder(Component.translatable("screen.SmokingWarningMod.hud_editor.reset"), button -> resetHud())
+        this.resetButton = Button.builder(Component.translatable("screen.smokingwarningmod.hud_editor.reset"), button -> resetHud())
                 .bounds(0, 0, RESET_BUTTON_WIDTH, RESET_BUTTON_HEIGHT)
                 .build();
         this.addRenderableWidget(this.resetButton);
@@ -143,7 +143,7 @@ public class AddictionHudEditorScreen extends Screen {
     }
 
     private void renderHelpText(GuiGraphics graphics) {
-        Component help = Component.translatable("screen.SmokingWarningMod.hud_editor.help");
+        Component help = Component.translatable("screen.smokingwarningmod.hud_editor.help");
         int textWidth = this.font.width(help);
         int x = Math.max(EDGE_MARGIN, (this.width - textWidth) / 2);
         int y = 10;

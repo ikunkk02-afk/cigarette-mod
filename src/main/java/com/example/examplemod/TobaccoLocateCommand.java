@@ -51,7 +51,7 @@ public final class TobaccoLocateCommand {
         if (!villagers.isEmpty()) {
             BlockPos pos = villagers.get(0).blockPosition();
             teleportPlayer(player, pos);
-            source.sendSuccess(() -> Component.translatable("command.SmokingWarningMod.tobacco.found_villager",
+            source.sendSuccess(() -> Component.translatable("command.smokingwarningmod.tobacco.found_villager",
                     pos.getX(), pos.getY(), pos.getZ()), true);
             return 1;
         }
@@ -61,12 +61,12 @@ public final class TobaccoLocateCommand {
 
         if (workbenchPos != null) {
             teleportPlayer(player, workbenchPos.above());
-            source.sendSuccess(() -> Component.translatable("command.SmokingWarningMod.tobacco.found_workbench",
+            source.sendSuccess(() -> Component.translatable("command.smokingwarningmod.tobacco.found_workbench",
                     workbenchPos.getX(), workbenchPos.getY(), workbenchPos.getZ()), true);
             return 1;
         }
 
-        source.sendFailure(Component.translatable("command.SmokingWarningMod.tobacco.not_found"));
+        source.sendFailure(Component.translatable("command.smokingwarningmod.tobacco.not_found"));
         return 0;
     }
 
@@ -91,7 +91,7 @@ public final class TobaccoLocateCommand {
             level.addFreshEntity(villager);
         }
 
-        source.sendSuccess(() -> Component.translatable("command.SmokingWarningMod.tobacco.spawned"), true);
+        source.sendSuccess(() -> Component.translatable("command.smokingwarningmod.tobacco.spawned"), true);
         return 1;
     }
 

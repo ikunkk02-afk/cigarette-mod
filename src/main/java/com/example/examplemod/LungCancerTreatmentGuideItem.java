@@ -26,7 +26,7 @@ public class LungCancerTreatmentGuideItem extends Item {
         if (level.isClientSide()) {
             List<Component> pages = new ArrayList<>();
             for (int i = 0; i < TOTAL_PAGES; i++) {
-                String key = "guide.SmokingWarningMod.treatment.page." + (i + 1);
+                String key = "guide.smokingwarningmod.treatment.page." + (i + 1);
                 pages.add(Component.translatable(key));
             }
             BookViewScreen.BookAccess bookAccess = new BookViewScreen.BookAccess(pages);

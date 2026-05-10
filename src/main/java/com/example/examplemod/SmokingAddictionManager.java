@@ -37,14 +37,14 @@ public final class SmokingAddictionManager {
         data.addAddiction(Math.max(0, cigaretteItem.addictionGain()));
         data.addLungDamage(Math.max(0, cigaretteItem.lungDamageGain()));
 
-        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.addiction.count", count), false);
+        player.displayClientMessage(Component.translatable("message.smokingwarningmod.addiction.count", count), false);
         int oldStage = data.addictionStage();
         int newStage = updateStage(player, data, true);
         if (newStage > STAGE_NONE && data.coughCooldown() <= 0) {
             data.setCoughCooldown(initialCoughCooldown(player, newStage));
         }
         if (newStage == STAGE_NONE && oldStage == STAGE_NONE && player.getRandom().nextFloat() < 0.25F) {
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.throat_irritated"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.throat_irritated"), true);
         }
         tick(player, data);
     }
@@ -69,7 +69,7 @@ public final class SmokingAddictionManager {
         // Show treatment guide hint even if player loaded into HEAVY stage
         if (stage >= STAGE_HEAVY && !data.hasShownTreatmentGuideHint()) {
             data.setHasShownTreatmentGuideHint(true);
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer.guide_hint"), false);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.lung_cancer.guide_hint"), false);
         }
 
         if (player.tickCount % EFFECT_REFRESH_TICKS == 0) {
@@ -123,20 +123,20 @@ public final class SmokingAddictionManager {
     private static void sendStageMessages(ServerPlayer player, int stage) {
         switch (stage) {
             case STAGE_LIGHT -> {
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.addiction.light"), false);
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.penalty.light"), true);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.addiction.light"), false);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.penalty.light"), true);
             }
             case STAGE_MEDIUM -> {
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.addiction.medium"), false);
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.penalty.medium"), true);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.addiction.medium"), false);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.penalty.medium"), true);
             }
             case STAGE_HEAVY -> {
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.addiction.heavy"), false);
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.penalty.heavy"), true);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.addiction.heavy"), false);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.penalty.heavy"), true);
                 PlayerSmokingData stageData = PlayerSmokingData.get(player);
                 if (!stageData.hasShownTreatmentGuideHint()) {
                     stageData.setHasShownTreatmentGuideHint(true);
-                    player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer.guide_hint"), false);
+                    player.displayClientMessage(Component.translatable("message.smokingwarningmod.lung_cancer.guide_hint"), false);
                 }
             }
             default -> {
@@ -244,7 +244,7 @@ public final class SmokingAddictionManager {
 
         if (stage >= STAGE_MEDIUM && player.isUsingItem() && player.getRandom().nextFloat() < (stage >= STAGE_HEAVY ? 0.7F : 0.25F)) {
             player.stopUsingItem();
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.cough_interrupt"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.cough_interrupt"), true);
         } else if (stage == STAGE_LIGHT && player.getRandom().nextFloat() < 0.3F) {
             addEffect(player, MobEffects.HUNGER, 80, 0);
         }
@@ -252,7 +252,7 @@ public final class SmokingAddictionManager {
         if (stage >= STAGE_HEAVY && player.getRandom().nextFloat() < 0.25F) {
             addEffect(player, MobEffects.WEAKNESS, 100, 1);
             addEffect(player, MobEffects.MOVEMENT_SLOWDOWN, 80, 1);
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.chest_tightness"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.chest_tightness"), true);
         }
     }
 

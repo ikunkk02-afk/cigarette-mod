@@ -105,7 +105,7 @@ public class DryingRackBlock extends BaseEntityBlock {
         }
 
         if (dryingRack.isFull()) {
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_full"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.drying_rack_full"), true);
             return ItemInteractionResult.CONSUME;
         }
 
@@ -114,7 +114,7 @@ public class DryingRackBlock extends BaseEntityBlock {
                 stack.shrink(1);
             }
             level.playSound(null, pos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 0.7F, 0.9F);
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_place_leaf", dryingRack.leafCount(), DryingRackBlockEntity.MAX_LEAF_COUNT), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.drying_rack_place_leaf", dryingRack.leafCount(), DryingRackBlockEntity.MAX_LEAF_COUNT), true);
             return ItemInteractionResult.CONSUME;
         }
 
@@ -137,7 +137,7 @@ public class DryingRackBlock extends BaseEntityBlock {
         }
 
         if (!dryingRack.isDried()) {
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_not_done"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.drying_rack_not_done"), true);
             return InteractionResult.CONSUME;
         }
 
@@ -145,7 +145,7 @@ public class DryingRackBlock extends BaseEntityBlock {
         if (!collected.isEmpty()) {
             giveOrDrop(player, collected);
             level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 0.7F, 1.15F);
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_collect_leaf"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.drying_rack_collect_leaf"), true);
             return InteractionResult.CONSUME;
         }
 

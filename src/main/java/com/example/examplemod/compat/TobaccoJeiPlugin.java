@@ -72,7 +72,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
 
         @Override
         public Component getTitle() {
-            return Component.translatable("jei.category.SmokingWarningMod.tobacco_workbench");
+            return Component.translatable("jei.category.smokingwarningmod.tobacco_workbench");
         }
 
         @Override
@@ -96,7 +96,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
         @Override
         public void draw(TobaccoWorkbenchRecipe recipe, IRecipeSlotsView slots, GuiGraphics g, double mouseX, double mouseY) {
             Font font = Minecraft.getInstance().font;
-            g.drawString(font, Component.translatable("jei.SmokingWarningMod.tobacco_workbench.description"),
+            g.drawString(font, Component.translatable("jei.smokingwarningmod.tobacco_workbench.description"),
                     1, 42, 0xFF808080, false);
         }
     }
@@ -109,7 +109,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
 
         @Override
         public Component getTitle() {
-            return Component.translatable("jei.category.SmokingWarningMod.drying_rack");
+            return Component.translatable("jei.category.smokingwarningmod.drying_rack");
         }
 
         @Override
@@ -133,7 +133,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
         public void draw(DryingRackRecipe recipe, IRecipeSlotsView slots, GuiGraphics g, double mouseX, double mouseY) {
             Font font = Minecraft.getInstance().font;
             int seconds = recipe.dryingTime() / 20;
-            g.drawString(font, Component.translatable("jei.SmokingWarningMod.drying_rack.description"),
+            g.drawString(font, Component.translatable("jei.smokingwarningmod.drying_rack.description"),
                     1, 42, 0xFF808080, false);
             g.drawString(font, seconds + "s", 75, 5, 0xFF555555, false);
         }
@@ -147,7 +147,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
 
         @Override
         public Component getTitle() {
-            return Component.translatable("jei.category.SmokingWarningMod.tobacco_grinder");
+            return Component.translatable("jei.category.smokingwarningmod.tobacco_grinder");
         }
 
         @Override
@@ -170,7 +170,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
         @Override
         public void draw(TobaccoGrinderRecipe recipe, IRecipeSlotsView slots, GuiGraphics g, double mouseX, double mouseY) {
             Font font = Minecraft.getInstance().font;
-            g.drawString(font, Component.translatable("jei.SmokingWarningMod.tobacco_grinder.description"),
+            g.drawString(font, Component.translatable("jei.smokingwarningmod.tobacco_grinder.description"),
                     1, 42, 0xFF808080, false);
         }
     }

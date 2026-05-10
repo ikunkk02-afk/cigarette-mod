@@ -17,7 +17,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class TobaccoWorkbenchBlock extends Block {
     public static final MapCodec<TobaccoWorkbenchBlock> CODEC = simpleCodec(TobaccoWorkbenchBlock::new);
-    private static final Component CONTAINER_TITLE = Component.translatable("container.SmokingWarningMod.tobacco_workbench");
+    private static final Component CONTAINER_TITLE = Component.translatable("container.smokingwarningmod.tobacco_workbench");
 
     public TobaccoWorkbenchBlock(BlockBehaviour.Properties properties) {
         super(properties);

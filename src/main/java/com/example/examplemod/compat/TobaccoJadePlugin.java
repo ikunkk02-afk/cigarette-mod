@@ -59,19 +59,19 @@ public class TobaccoJadePlugin implements IWailaPlugin {
             CompoundTag data = accessor.getServerData();
             int leafCount = data.getInt("LeafCount");
             if (leafCount <= 0) {
-                tooltip.add(Component.translatable("jade.SmokingWarningMod.status", Component.translatable("jade.SmokingWarningMod.status.empty")));
+                tooltip.add(Component.translatable("jade.smokingwarningmod.status", Component.translatable("jade.smokingwarningmod.status.empty")));
                 return;
             }
 
-            tooltip.add(Component.translatable("jade.SmokingWarningMod.leaf_count", leafCount));
+            tooltip.add(Component.translatable("jade.smokingwarningmod.leaf_count", leafCount));
             if (data.getBoolean("Dried")) {
-                tooltip.add(Component.translatable("jade.SmokingWarningMod.status", Component.translatable("jade.SmokingWarningMod.status.dried")));
+                tooltip.add(Component.translatable("jade.smokingwarningmod.status", Component.translatable("jade.smokingwarningmod.status.dried")));
                 return;
             }
 
-            tooltip.add(Component.translatable("jade.SmokingWarningMod.progress", data.getInt("Progress")));
-            tooltip.add(Component.translatable("jade.SmokingWarningMod.remaining_seconds", data.getInt("RemainingSeconds")));
-            tooltip.add(Component.translatable("jade.SmokingWarningMod.status", Component.translatable("jade.SmokingWarningMod.status.drying")));
+            tooltip.add(Component.translatable("jade.smokingwarningmod.progress", data.getInt("Progress")));
+            tooltip.add(Component.translatable("jade.smokingwarningmod.remaining_seconds", data.getInt("RemainingSeconds")));
+            tooltip.add(Component.translatable("jade.smokingwarningmod.status", Component.translatable("jade.smokingwarningmod.status.drying")));
         }
     }
 
@@ -85,8 +85,8 @@ public class TobaccoJadePlugin implements IWailaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            tooltip.add(Component.translatable("block.SmokingWarningMod.tobacco_grinder"));
-            tooltip.add(Component.translatable("jade.SmokingWarningMod.usage.grinder"));
+            tooltip.add(Component.translatable("block.smokingwarningmod.tobacco_grinder"));
+            tooltip.add(Component.translatable("jade.smokingwarningmod.usage.grinder"));
         }
     }
 
@@ -100,8 +100,8 @@ public class TobaccoJadePlugin implements IWailaPlugin {
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            tooltip.add(Component.translatable("block.SmokingWarningMod.tobacco_workbench"));
-            tooltip.add(Component.translatable("jade.SmokingWarningMod.usage.workbench"));
+            tooltip.add(Component.translatable("block.smokingwarningmod.tobacco_workbench"));
+            tooltip.add(Component.translatable("jade.smokingwarningmod.usage.workbench"));
         }
     }
 }

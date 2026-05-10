@@ -57,7 +57,7 @@ public class TobaccoGrinderBlock extends Block {
         }
         giveOrDrop(player, recipe.get().value().assemble(input, level.registryAccess()));
         level.playSound(null, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.8F, 1.0F);
-        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.tobacco_grinder_use"), true);
+        player.displayClientMessage(Component.translatable("message.smokingwarningmod.tobacco_grinder_use"), true);
         return ItemInteractionResult.CONSUME;
     }
 

@@ -82,7 +82,7 @@ public class TobaccoReiPlugin implements REIClientPlugin {
 
     static class TobaccoWorkbenchCategory implements DisplayCategory<BasicDisplay> {
         @Override public CategoryIdentifier<BasicDisplay> getCategoryIdentifier() { return TOBACCO_WORKBENCH; }
-        @Override public Component getTitle() { return Component.translatable("rei.category.SmokingWarningMod.tobacco_workbench"); }
+        @Override public Component getTitle() { return Component.translatable("rei.category.smokingwarningmod.tobacco_workbench"); }
         @Override public Renderer getIcon() { return EntryStacks.of(SmokingWarningMod.TOBACCO_WORKBENCH_ITEM); }
         @Override public int getDisplayHeight() { return 36; }
         @Override public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {
@@ -99,7 +99,7 @@ public class TobaccoReiPlugin implements REIClientPlugin {
 
     static class DryingRackCategory implements DisplayCategory<BasicDisplay> {
         @Override public CategoryIdentifier<BasicDisplay> getCategoryIdentifier() { return DRYING_RACK; }
-        @Override public Component getTitle() { return Component.translatable("rei.category.SmokingWarningMod.drying_rack"); }
+        @Override public Component getTitle() { return Component.translatable("rei.category.smokingwarningmod.drying_rack"); }
         @Override public Renderer getIcon() { return EntryStacks.of(SmokingWarningMod.DRYING_RACK_ITEM); }
         @Override public int getDisplayHeight() { return 36; }
         @Override public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {
@@ -115,7 +115,7 @@ public class TobaccoReiPlugin implements REIClientPlugin {
 
     static class TobaccoGrinderCategory implements DisplayCategory<BasicDisplay> {
         @Override public CategoryIdentifier<BasicDisplay> getCategoryIdentifier() { return TOBACCO_GRINDER; }
-        @Override public Component getTitle() { return Component.translatable("rei.category.SmokingWarningMod.tobacco_grinder"); }
+        @Override public Component getTitle() { return Component.translatable("rei.category.smokingwarningmod.tobacco_grinder"); }
         @Override public Renderer getIcon() { return EntryStacks.of(SmokingWarningMod.TOBACCO_GRINDER_ITEM); }
         @Override public int getDisplayHeight() { return 36; }
         @Override public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {

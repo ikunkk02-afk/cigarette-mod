@@ -84,7 +84,7 @@ public class SmokingWarningMod {
     public static final DeferredItem<Item> DRIED_TOBACCO_LEAF = ITEMS.registerSimpleItem("dried_tobacco_leaf", new Item.Properties());
     public static final DeferredItem<Item> TOBACCO_SHREDS = ITEMS.registerSimpleItem("tobacco_shreds", new Item.Properties());
     public static final DeferredItem<Item> TOBACCO_SEEDS = ITEMS.register("tobacco_seeds", () -> new ItemNameBlockItem(TOBACCO_CROP.get(), new Item.Properties()));
-    public static final DeferredItem<Item> CIGARETTE = ITEMS.register("cigarette", () -> new CigaretteItem(new Item.Properties().stacksTo(1).durability(Config.DEFAULT_CIGARETTE_DURABILITY)));
+    public static final DeferredItem<Item> CIGARETTE = ITEMS.register("cigarette", () -> new CigaretteItem(new Item.Properties().stacksTo(64)));
     public static final DeferredItem<Item> MENTHOL_CIGARETTE = registerCigarette("menthol_cigarette", CigaretteItem.CigaretteVariant.MENTHOL);
     public static final DeferredItem<Item> HONEY_CIGARETTE = registerCigarette("honey_cigarette", CigaretteItem.CigaretteVariant.HONEY);
     public static final DeferredItem<Item> BLAZE_CIGARETTE = registerCigarette("blaze_cigarette", CigaretteItem.CigaretteVariant.BLAZE);
@@ -97,7 +97,7 @@ public class SmokingWarningMod {
     public static final DeferredItem<Item> HUAZI_CIGARETTE = registerCigarette("huazi_cigarette", CigaretteItem.CigaretteVariant.HUAZI);
     public static final DeferredItem<Item> LOTUS_CIGARETTE = registerCigarette("lotus_cigarette", CigaretteItem.CigaretteVariant.LOTUS);
     public static final DeferredItem<Item> CIGARETTE_BUTT = ITEMS.registerSimpleItem("cigarette_butt", new Item.Properties());
-    public static final DeferredItem<Item> LIGHTER = ITEMS.registerSimpleItem("lighter", new Item.Properties().stacksTo(1).durability(Config.DEFAULT_LIGHTER_DURABILITY));
+    public static final DeferredItem<Item> LIGHTER = ITEMS.register("lighter", () -> new LighterItem(new Item.Properties().stacksTo(1).durability(Config.DEFAULT_LIGHTER_DURABILITY)));
     public static final DeferredItem<BlockItem> DRYING_RACK_ITEM = ITEMS.register("drying_rack", () -> new BlockItem(DRYING_RACK.get(), new Item.Properties()));
     public static final DeferredItem<BlockItem> TOBACCO_GRINDER_ITEM = ITEMS.register("tobacco_grinder", () -> new BlockItem(TOBACCO_GRINDER.get(), new Item.Properties()));
     public static final DeferredItem<BlockItem> TOBACCO_WORKBENCH_ITEM = ITEMS.register("tobacco_workbench", () -> new BlockItem(TOBACCO_WORKBENCH.get(), new Item.Properties()));
@@ -264,7 +264,7 @@ public class SmokingWarningMod {
     }
 
     private static DeferredItem<Item> registerCigarette(String name, CigaretteItem.CigaretteVariant variant) {
-        return ITEMS.register(name, () -> new CigaretteItem(new Item.Properties().stacksTo(1).durability(variant.maxDurability()), variant));
+        return ITEMS.register(name, () -> new CigaretteItem(new Item.Properties().stacksTo(64), variant));
     }
 
     public static Item[] allCigaretteItems() {

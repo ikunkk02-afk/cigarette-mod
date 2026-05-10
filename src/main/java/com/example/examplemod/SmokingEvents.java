@@ -5,7 +5,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
@@ -82,45 +81,20 @@ public class SmokingEvents {
     public static void stopSmoking(Player player, boolean completed, Component completedMessage) {
         PlayerSmokingData.get(player).setSmokingTicks(0);
         if (completed) {
-            player.displayClientMessage(completedMessage == null ? Component.translatable("message.SmokingWarningMod.smoking_completed") : completedMessage, true);
+            player.displayClientMessage(completedMessage == null ? Component.translatable("message.smokingwarningmod.smoking_completed") : completedMessage, true);
         } else {
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.smoking_stopped"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.smoking_stopped"), true);
         }
         if (player instanceof ServerPlayer serverPlayer) {
             AddictionHudSync.syncTo(serverPlayer);
         }
     }
 
-    public static boolean finishSmokingItem(ServerPlayer player, ItemStack stack) {
-        if (player.getAbilities().instabuild) {
-            return false;
+    public static void finishSmokingItem(ServerPlayer player, ItemStack stack) {
+        CigaretteItem cigaretteItem = CigaretteItem.isCigarette(stack) ? (CigaretteItem) stack.getItem() : null;
+        if (cigaretteItem != null) {
+            completeSmoking(player, cigaretteItem);
         }
-
-        InteractionHand hand = player.getUsedItemHand();
-        ItemStack held = player.getItemInHand(hand);
-        CigaretteItem cigaretteItem = null;
-        if (CigaretteItem.isCigarette(held)) {
-            if (held.getDamageValue() + 1 < held.getMaxDamage()) {
-                return false;
-            }
-            cigaretteItem = (CigaretteItem) held.getItem();
-            held.shrink(1);
-            player.setItemInHand(hand, ItemStack.EMPTY);
-            giveCigaretteButt(player);
-            syncHeldItem(player);
-        } else if (CigaretteItem.isCigarette(stack) && !stack.isEmpty()) {
-            if (stack.getDamageValue() + 1 < stack.getMaxDamage()) {
-                return false;
-            }
-            cigaretteItem = (CigaretteItem) stack.getItem();
-            stack.shrink(1);
-            giveCigaretteButt(player);
-            syncHeldItem(player);
-        } else {
-            return false;
-        }
-        completeSmoking(player, cigaretteItem);
-        return true;
     }
 
     private static void tickSmoking(ServerPlayer player, PlayerSmokingData data) {
@@ -129,7 +103,7 @@ public class SmokingEvents {
 
         boolean lungCancerStage = isLungCancerStage(player, data);
         if (lungCancerStage && smokingTicks == 1 && Config.ENABLE_LUNG_CANCER_SMOKING_DAMAGE.getAsBoolean()) {
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer_smoking_started"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.lung_cancer_smoking_started"), true);
         }
 
         int interval = Config.SMOKING_INTERVAL_TICKS.getAsInt();
@@ -138,69 +112,22 @@ public class SmokingEvents {
             return;
         }
 
-        InteractionHand hand = player.getUsedItemHand();
-        ItemStack heldCigarette = player.getItemInHand(hand);
-        ItemStack activeCigarette = player.getUseItem();
-        ItemStack cigarette = CigaretteItem.isCigarette(heldCigarette) ? heldCigarette : activeCigarette;
-        if (!CigaretteItem.isCigarette(cigarette)) {
-            stopSmoking(player, false);
-            return;
-        }
-
-        CigaretteItem cigaretteItem = cigarette.getItem() instanceof CigaretteItem item ? item : null;
-        boolean depleted = damageCigarette(player, hand, heldCigarette, activeCigarette);
         spawnSmoke(player.serverLevel(), player);
         playSmokingPulse(player);
-        if (!depleted && cigaretteItem != null) {
+
+        ItemStack useItem = player.getUseItem();
+        if (CigaretteItem.isCigarette(useItem) && useItem.getItem() instanceof CigaretteItem cigaretteItem) {
             cigaretteItem.applyVariantEffects(player, smokingTicks);
         }
 
-        if (depleted) {
-            completeSmoking(player, cigaretteItem);
-            player.stopUsingItem();
-            stopSmoking(player, true, cigaretteItem == null ? null : cigaretteItem.finishMessage());
-        } else {
-            tickLungCancerSmokingDamage(player, data, smokingTicks, lungCancerStage);
-        }
+        tickLungCancerSmokingDamage(player, data, smokingTicks, lungCancerStage);
     }
 
-    private static boolean damageCigarette(ServerPlayer player, InteractionHand hand, ItemStack heldCigarette, ItemStack activeCigarette) {
-        if (player.getAbilities().instabuild) {
-            return false;
-        }
-
-        ItemStack cigarette = CigaretteItem.isCigarette(heldCigarette) ? heldCigarette : activeCigarette;
-        int nextDamage = cigarette.getDamageValue() + 1;
-        if (nextDamage >= cigarette.getMaxDamage()) {
-            cigarette.shrink(1);
-            player.setItemInHand(hand, ItemStack.EMPTY);
-            giveCigaretteButt(player);
-            syncHeldItem(player);
-            return true;
-        }
-
-        cigarette.setDamageValue(nextDamage);
-        if (activeCigarette != cigarette && CigaretteItem.isCigarette(activeCigarette)) {
-            activeCigarette.setDamageValue(nextDamage);
-        }
-        if (heldCigarette != cigarette && CigaretteItem.isCigarette(heldCigarette)) {
-            heldCigarette.setDamageValue(nextDamage);
-        }
-        syncHeldItem(player);
-        return false;
-    }
-
-    private static void giveCigaretteButt(ServerPlayer player) {
+    public static void giveCigaretteButt(ServerPlayer player) {
         ItemStack butt = new ItemStack(SmokingWarningMod.CIGARETTE_BUTT.get());
         if (!player.getInventory().add(butt)) {
             player.drop(butt, false);
         }
-    }
-
-    private static void syncHeldItem(ServerPlayer player) {
-        player.getInventory().setChanged();
-        player.inventoryMenu.broadcastChanges();
-        player.containerMenu.broadcastChanges();
     }
 
     private static void completeSmoking(ServerPlayer player, CigaretteItem cigaretteItem) {
@@ -239,7 +166,7 @@ public class SmokingEvents {
         if (hurtForLungCancerSmoking(player, Config.LUNG_CANCER_SMOKING_DAMAGE_AMOUNT.getAsDouble())) {
             playLungCancerSmokingDamageSound(player);
             if (data.lungCancerSmokingMessageCooldown() <= 0) {
-                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer_smoking_pain"), true);
+                player.displayClientMessage(Component.translatable("message.smokingwarningmod.lung_cancer_smoking_pain"), true);
                 data.setLungCancerSmokingMessageCooldown(LUNG_CANCER_SMOKING_MESSAGE_COOLDOWN_TICKS);
             }
         }
@@ -263,7 +190,7 @@ public class SmokingEvents {
 
         if (hurtForLungCancerSmoking(player, damage)) {
             playLungCancerSmokingDamageSound(player);
-            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer_finish_damage"), true);
+            player.displayClientMessage(Component.translatable("message.smokingwarningmod.lung_cancer_finish_damage"), true);
         }
     }
 
