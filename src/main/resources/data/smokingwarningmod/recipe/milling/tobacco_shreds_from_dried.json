@@ -1,4 +1,4 @@
-﻿{
+{
   "neoforge:conditions": [
     {
       "type": "neoforge:mod_loaded",
@@ -8,13 +8,13 @@
   "type": "create:milling",
   "ingredients": [
     {
-      "item": "smokingwarningmod:tobacco_shreds"
+      "item": "smokingwarningmod:dried_tobacco_leaf"
     }
   ],
   "processing_time": 200,
   "results": [
     {
-      "id": "smokingwarningmod:coarse_tobacco_shreds"
+      "id": "smokingwarningmod:tobacco_shreds"
     }
   ]
 }

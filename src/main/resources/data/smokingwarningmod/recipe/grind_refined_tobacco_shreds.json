@@ -1,0 +1,10 @@
+{
+  "type": "smokingwarningmod:tobacco_grinder_recipe",
+  "ingredient": {
+    "item": "smokingwarningmod:coarse_tobacco_shreds"
+  },
+  "result": {
+    "id": "smokingwarningmod:refined_tobacco_shreds",
+    "count": 1
+  }
+}

@@ -55,7 +55,11 @@ All third-party mods listed above are **optional** — none are required.
 ### Basic Processing Chain
 
 ```
-Tobacco Leaf → [Drying Rack] → Dried Tobacco Leaf → [Tobacco Grinder] → Tobacco Shreds → [Tobacco Workbench] → Cigarette
+Tobacco Leaf → [Drying Rack / Smoker] → Dried Tobacco Leaf
+Dried Tobacco Leaf → [Tobacco Grinder] → Tobacco Shreds
+Tobacco Shreds → [Tobacco Grinder] → Coarse Tobacco Shreds
+Coarse Tobacco Shreds → [Tobacco Grinder] → Refined Tobacco Shreds
+Refined Tobacco Shreds + Paper → [Tobacco Workbench] → Cigarette
 ```
 
 ### Cigarette System
@@ -125,8 +129,9 @@ The mechanical route does **not** replace the manual route. Original recipes and
 Full industrial pipeline:
 
 ```
-Tobacco Leaf → [Encased Fan + Fire/Campfire] → Dried Tobacco Leaf
-Dried Tobacco Leaf → [Millstone] / [Crushing Wheels] → Coarse Tobacco Shreds
+Tobacco Leaf → [Smoker] → Dried Tobacco Leaf
+Dried Tobacco Leaf → [Millstone] → Tobacco Shreds
+Tobacco Shreds → [Millstone] / [Crushing Wheels] → Coarse Tobacco Shreds
 Coarse Tobacco Shreds → [Millstone] / [Mixer + Sugar] → Refined Tobacco Shreds
 Paper → [Mechanical Press] → Cigarette Paper
 String + Cigarette Paper → [Mixer] → Cigarette Filter
@@ -154,8 +159,9 @@ Cigarette → [Sequenced Assembly] → Huazi / Lotus
 
 | Item | Purpose |
 |------|---------|
-| Coarse Tobacco Shreds | First grinding stage |
-| Refined Tobacco Shreds | Rolling material |
+| Tobacco Shreds | First grind stage from dried leaves |
+| Coarse Tobacco Shreds | Second grind stage |
+| Refined Tobacco Shreds | Final rolling material |
 | Cigarette Paper | Rolling material |
 | Cigarette Filter | Rolling material |
 | Unfinished Cigarette | Semi-finished product |

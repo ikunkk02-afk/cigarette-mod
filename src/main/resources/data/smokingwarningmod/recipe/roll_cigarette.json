@@ -1,7 +1,7 @@
 ﻿{
   "type": "smokingwarningmod:tobacco_workbench_recipe",
   "first": {
-    "item": "smokingwarningmod:tobacco_shreds"
+    "item": "smokingwarningmod:refined_tobacco_shreds"
   },
   "second": {
     "item": "minecraft:paper"
