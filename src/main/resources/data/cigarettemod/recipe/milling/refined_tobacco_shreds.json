@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "cigarettemod:coarse_tobacco_shreds"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "id": "cigarettemod:refined_tobacco_shreds"
+    },
+    {
+      "chance": 0.15,
+      "id": "cigarettemod:refined_tobacco_shreds"
+    }
+  ]
+}

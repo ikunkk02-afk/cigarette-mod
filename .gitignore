@@ -38,3 +38,7 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+### Project dev tools & external jars ###
+generate_textures.py
+*.jar

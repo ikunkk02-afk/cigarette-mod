@@ -289,5 +289,27 @@ public class Config {
             .comment("Maximum tobacco villagers per village.")
             .defineInRange("tobaccoVillagerMaxPerVillage", 1, 1, 10);
 
+    // ========== Create / Mechanical Power optional compatibility ==========
+
+    public static final ModConfigSpec.BooleanValue ENABLE_CREATE_COMPAT = BUILDER
+            .comment("Master switch for Create mod compatibility. When disabled, Create compat code is skipped entirely. Note: Data recipes loaded by Create itself are not affected by this switch — use a datapack to remove Create recipes if needed.")
+            .define("enableCreateCompat", true);
+
+    public static final ModConfigSpec.BooleanValue ENABLE_CREATE_MILLING_RECIPES = BUILDER
+            .comment("Reserved for future datapack-based control. Currently does not disable JSON recipes loaded by Create.")
+            .define("enableCreateMillingRecipes", true);
+
+    public static final ModConfigSpec.BooleanValue ENABLE_CREATE_CRUSHING_RECIPES = BUILDER
+            .comment("Reserved for future datapack-based control. Currently does not disable JSON recipes loaded by Create.")
+            .define("enableCreateCrushingRecipes", true);
+
+    public static final ModConfigSpec.BooleanValue ENABLE_CREATE_DEPLOYING_RECIPES = BUILDER
+            .comment("Reserved for future datapack-based control. Currently does not disable JSON recipes loaded by Create.")
+            .define("enableCreateDeployingRecipes", true);
+
+    public static final ModConfigSpec.BooleanValue ENABLE_CREATE_SEQUENCED_ASSEMBLY = BUILDER
+            .comment("Reserved for future datapack-based control. Currently does not disable JSON recipes loaded by Create.")
+            .define("enableCreateSequencedAssembly", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

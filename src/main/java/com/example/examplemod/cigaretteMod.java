@@ -36,7 +36,9 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import org.slf4j.Logger;
+import com.example.examplemod.compat.CreateCompat;
 
 @Mod(cigaretteMod.MODID)
 public class cigaretteMod {
@@ -106,6 +108,15 @@ public class cigaretteMod {
     public static final DeferredItem<Item> TARGETED_THERAPY_MEDICINE = ITEMS.register("targeted_therapy_medicine", () -> new TreatmentItem(new Item.Properties().stacksTo(8), TreatmentItem.TreatmentType.TARGETED_THERAPY));
     public static final DeferredItem<Item> REHABILITATION_PLAN = ITEMS.register("rehabilitation_plan", () -> new TreatmentItem(new Item.Properties().stacksTo(1), TreatmentItem.TreatmentType.REHABILITATION));
     public static final DeferredItem<Item> LUNG_CANCER_TREATMENT_GUIDE = ITEMS.register("lung_cancer_treatment_guide", () -> new LungCancerTreatmentGuideItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> INCOMPLETE_RICK_V_CIGARETTE = ITEMS.registerSimpleItem("incomplete_rick_v_cigarette", new Item.Properties().stacksTo(1));
+    // Create automation intermediate items
+    public static final DeferredItem<Item> COARSE_TOBACCO_SHREDS = ITEMS.registerSimpleItem("coarse_tobacco_shreds", new Item.Properties());
+    public static final DeferredItem<Item> REFINED_TOBACCO_SHREDS = ITEMS.registerSimpleItem("refined_tobacco_shreds", new Item.Properties());
+    public static final DeferredItem<Item> CIGARETTE_FILTER = ITEMS.registerSimpleItem("cigarette_filter", new Item.Properties());
+    public static final DeferredItem<Item> CIGARETTE_PAPER = ITEMS.registerSimpleItem("cigarette_paper", new Item.Properties());
+    public static final DeferredItem<Item> UNFINISHED_CIGARETTE = ITEMS.registerSimpleItem("unfinished_cigarette", new Item.Properties());
+    public static final DeferredItem<Item> PACKAGED_CIGARETTE = ITEMS.registerSimpleItem("packaged_cigarette", new Item.Properties());
+    public static final DeferredItem<Item> INCOMPLETE_VARIANT_CIGARETTE = ITEMS.registerSimpleItem("incomplete_variant_cigarette", new Item.Properties().stacksTo(1));
 
     public static final DeferredHolder<MobEffect, MobEffect> SMOKE_ADDICTION = MOB_EFFECTS.register(
             "smoke_addiction", () -> new SimpleHarmfulEffect(0x8b6f47));
@@ -167,6 +178,12 @@ public class cigaretteMod {
                 output.accept(TOBACCO_LEAF.get());
                 output.accept(DRIED_TOBACCO_LEAF.get());
                 output.accept(TOBACCO_SHREDS.get());
+                output.accept(COARSE_TOBACCO_SHREDS.get());
+                output.accept(REFINED_TOBACCO_SHREDS.get());
+                output.accept(CIGARETTE_PAPER.get());
+                output.accept(CIGARETTE_FILTER.get());
+                output.accept(UNFINISHED_CIGARETTE.get());
+                output.accept(PACKAGED_CIGARETTE.get());
                 output.accept(CIGARETTE.get());
                 output.accept(MENTHOL_CIGARETTE.get());
                 output.accept(HONEY_CIGARETTE.get());
@@ -212,6 +229,29 @@ public class cigaretteMod {
         NeoForge.EVENT_BUS.register(new TobaccoVillagerTrades());
         NeoForge.EVENT_BUS.addListener((ServerTickEvent.Post event) -> TobaccoVillagerSpawner.onServerTick(event.getServer().overworld()));
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent event) -> TobaccoLocateCommand.register(event.getDispatcher()));
+        NeoForge.EVENT_BUS.addListener((ServerStartedEvent event) -> {
+            var rm = event.getServer().getRecipeManager();
+            int wb = 0, dr = 0, tg = 0;
+            int milling = 0, crushing = 0, smoking = 0, pressing = 0, mixing = 0, deploying = 0, seq = 0;
+            for (var recipe : rm.getRecipes()) {
+                var id = recipe.id().toString();
+                if (!id.startsWith("cigarettemod:")) continue;
+                var type = recipe.value().getType().toString();
+                if (type.contains("tobacco_workbench")) wb++;
+                else if (type.contains("drying_rack")) dr++;
+                else if (type.contains("tobacco_grinder")) tg++;
+                else if (type.contains("milling")) milling++;
+                else if (type.contains("crushing")) crushing++;
+                else if (type.contains("smoking")) smoking++;
+                else if (type.contains("pressing")) pressing++;
+                else if (type.contains("mixing")) mixing++;
+                else if (type.contains("deploying")) deploying++;
+                else if (type.contains("sequenced_assembly")) seq++;
+            }
+            LOGGER.info("[DEBUG] Recipes loaded — tobacco_workbench: {}, drying_rack: {}, tobacco_grinder: {}", wb, dr, tg);
+            LOGGER.info("[DEBUG] Create recipes — milling: {}, crushing: {}, smoking: {}, pressing: {}, mixing: {}, deploying: {}, sequenced_assembly: {}", milling, crushing, smoking, pressing, mixing, deploying, seq);
+            LOGGER.info("[DEBUG] Create mod detected: {}", CreateCompat.isActive());
+        });
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
@@ -253,5 +293,6 @@ public class cigaretteMod {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("Loaded Cigarette Warning Mod base systems");
+        CreateCompat.init();
     }
 }

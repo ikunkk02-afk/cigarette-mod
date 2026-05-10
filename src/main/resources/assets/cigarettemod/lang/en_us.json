@@ -235,6 +235,14 @@
   "cigarettemod.configuration.villageNoSmokingWarningCooldownTicks": "No-Smoking Warning Cooldown",
   "cigarettemod.configuration.ignoreCreativePlayersInNoSmokingZone": "Ignore Creative Players in No-Smoking Zone",
   "item.cigarettemod.lung_cancer_treatment_guide": "Lung Cancer Treatment Guide",
+  "item.cigarettemod.coarse_tobacco_shreds": "Coarse Tobacco Shreds",
+  "item.cigarettemod.refined_tobacco_shreds": "Refined Tobacco Shreds",
+  "item.cigarettemod.cigarette_filter": "Cigarette Filter",
+  "item.cigarettemod.cigarette_paper": "Cigarette Paper",
+  "item.cigarettemod.unfinished_cigarette": "Unfinished Cigarette",
+  "item.cigarettemod.packaged_cigarette": "Packaged Cigarette",
+  "item.cigarettemod.incomplete_variant_cigarette": "Incomplete Variant Cigarette",
+  "item.cigarettemod.incomplete_rick_v_cigarette": "Incomplete Rick V Cigarette",
   "screen.cigarettemod.treatment_guide.title": "Lung Cancer Treatment Guide",
   "message.cigarettemod.lung_cancer.guide_hint": "You have reached the lung cancer stage. You can buy the Lung Cancer Treatment Guide from a master Tobacco Villager.",
   "message.cigarettemod.village.no_smoking": "This is a village no-smoking zone! The iron golems are angered by your smoking.",
@@ -252,5 +260,8 @@
   "command.cigarettemod.tobacco.found_villager": "Found tobacco villager, teleported to (%s, %s, %s)",
   "command.cigarettemod.tobacco.found_workbench": "Found tobacco workbench, teleported to (%s, %s, %s)",
   "command.cigarettemod.tobacco.not_found": "No tobacco villager or workbench found nearby",
-  "command.cigarettemod.tobacco.spawned": "Spawned tobacco villager and workbench at your location"
+  "command.cigarettemod.tobacco.spawned": "Spawned tobacco villager and workbench at your location",
+  "rei.category.cigarettemod.drying_rack": "Drying Rack",
+  "rei.category.cigarettemod.tobacco_grinder": "Tobacco Grinder",
+  "rei.category.cigarettemod.tobacco_workbench": "Tobacco Workbench"
 }

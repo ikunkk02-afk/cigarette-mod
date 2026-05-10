@@ -32,6 +32,14 @@ repositories {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }
+    maven {
+        name = "CreateMod"
+        url = "https://maven.createmod.net"
+    }
+    maven {
+        name = "IThundxr"
+        url = "https://maven.ithundxr.dev/snapshots"
+    }
 }
 
 base {
@@ -125,6 +133,25 @@ dependencies {
     def enableOptionalRuntime = !project.hasProperty("skipOptionalRuntime")
 
     compileOnly "maven.modrinth:jade:${jade_version}+neoforge"
+    // JEI/REI compileOnly — jars in project root, always available for compilation
+    // At runtime, the respective plugin only activates when its mod is installed
+    compileOnly files("jei-1.21.1-neoforge-19.27.0.340.jar",
+        "RoughlyEnoughItems-16.0.799-neoforge.jar",
+        "architectury-13.0.8-neoforge.jar",
+        "cloth-config-15.0.140-neoforge.jar")
+
+    // Create optional compatibility — compile against API, test at dev runtime, not required in production
+    compileOnly("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    compileOnly("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+    compileOnly("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    if (enableOptionalRuntime) {
+        localRuntime("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+        localRuntime("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+        localRuntime("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+        localRuntime("com.tterrag.registrate:Registrate:${registrate_version}")
+    }
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar

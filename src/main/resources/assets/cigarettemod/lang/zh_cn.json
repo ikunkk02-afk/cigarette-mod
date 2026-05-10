@@ -235,6 +235,14 @@
   "cigarettemod.configuration.villageNoSmokingWarningCooldownTicks": "禁烟区提示冷却",
   "cigarettemod.configuration.ignoreCreativePlayersInNoSmokingZone": "禁烟区忽略创造模式玩家",
   "item.cigarettemod.lung_cancer_treatment_guide": "肺癌治疗手册",
+  "item.cigarettemod.coarse_tobacco_shreds": "粗烟丝",
+  "item.cigarettemod.refined_tobacco_shreds": "精制烟丝",
+  "item.cigarettemod.cigarette_filter": "香烟过滤嘴",
+  "item.cigarettemod.cigarette_paper": "卷烟纸",
+  "item.cigarettemod.unfinished_cigarette": "未完成的香烟",
+  "item.cigarettemod.packaged_cigarette": "包装香烟",
+  "item.cigarettemod.incomplete_variant_cigarette": "变体香烟半成品",
+  "item.cigarettemod.incomplete_rick_v_cigarette": "瑞克五代半成品",
   "screen.cigarettemod.treatment_guide.title": "肺癌治疗手册",
   "message.cigarettemod.lung_cancer.guide_hint": "你已经进入肺癌阶段。你可以找大师级烟草村民购买《肺癌治疗手册》了解治疗流程。",
   "message.cigarettemod.village.no_smoking": "这里是村庄禁烟区！铁傀儡被你的吸烟行为激怒了。",
@@ -252,5 +260,8 @@
   "command.cigarettemod.tobacco.found_villager": "找到烟草村民，已传送到 (%s, %s, %s)",
   "command.cigarettemod.tobacco.found_workbench": "找到烟草工作台，已传送到 (%s, %s, %s)",
   "command.cigarettemod.tobacco.not_found": "附近没有找到烟草村民或烟草工作台",
-  "command.cigarettemod.tobacco.spawned": "已在身边生成烟草村民和烟草工作台"
+  "command.cigarettemod.tobacco.spawned": "已在身边生成烟草村民和烟草工作台",
+  "rei.category.cigarettemod.drying_rack": "晾晒架",
+  "rei.category.cigarettemod.tobacco_grinder": "研磨台",
+  "rei.category.cigarettemod.tobacco_workbench": "烟草工作台"
 }

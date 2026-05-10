@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "cigarettemod:packaged_cigarette"
+    }
+  ],
+  "result": {
+    "id": "cigarettemod:cigarette",
+    "count": 1
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "cigarettemod:cigarette"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "id": "cigarettemod:huazi_cigarette",
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "cigarettemod:cigarette"
+        },
+        {
+          "item": "minecraft:gold_ingot"
+        }
+      ],
+      "results": [
+        {
+          "id": "cigarettemod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "cigarettemod:incomplete_variant_cigarette"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "cigarettemod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "cigarettemod:incomplete_variant_cigarette"
+        }
+      ],
+      "results": [
+        {
+          "id": "cigarettemod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "cigarettemod:incomplete_variant_cigarette"
+        },
+        {
+          "item": "minecraft:paper"
+        }
+      ],
+      "results": [
+        {
+          "id": "cigarettemod:huazi_cigarette"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "cigarettemod:incomplete_variant_cigarette"
+  }
+}
