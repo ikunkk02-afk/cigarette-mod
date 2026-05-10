@@ -1,199 +1,193 @@
-# 抽烟警示模组 / Smoking Warning Mod
+# Smoking Warning Mod
 
 [![Minecraft](https://img.shields.io/badge/Minecraft-1.21.1-green)](https://minecraft.net)
 [![NeoForge](https://img.shields.io/badge/Mod%20Loader-NeoForge-orange)](https://neoforged.net)
 [![Java](https://img.shields.io/badge/Java-21-blue)](https://adoptium.net)
 
-**作者：寿云** · [B站主页](https://space.bilibili.com/1832031043)
+**Author: 寿云** · [Bilibili](https://space.bilibili.com/1832031043)
 
-**贡献者：** 寿云、ChatGPT、DeepSeek
+**Contributors: 寿云, ChatGPT, DeepSeek**
 
-## 简介
+## Overview
 
-抽烟警示模组是一个面向 **Minecraft 1.21.1 + NeoForge** 的生存扩展模组。
+Smoking Warning Mod is a **Minecraft 1.21.1 + NeoForge** survival expansion mod.
 
-模组围绕烟草种植、烟草加工、香烟制作、吸烟行为、成瘾惩罚、肺癌阶段、治疗系统、HUD 展示、村庄禁烟区、烟草村民、**Create 机械动力联动**和**信息类模组兼容**展开。
+This mod features tobacco farming, processing, cigarette crafting, smoking mechanics, addiction progression, lung cancer stages, a full treatment system, HUD display, village no-smoking zones, tobacco villagers, **Create mechanical power integration**, and **optional recipe viewer compatibility** (JEI / REI / Jade).
 
-本模组的核心设计是：**短期收益，长期代价。** 抽烟前期可能带来短暂正面效果，但随着抽烟次数增加，玩家会进入轻度、中度、重度成瘾，后期会出现咳嗽、肺癌、扣血等严重惩罚。
+The core design philosophy is: **short-term benefits, long-term consequences.** Smoking may provide brief positive effects early on, but as cigarette consumption increases, players progress through light, medium, and heavy addiction stages, eventually facing coughing, lung cancer, and health damage.
 
-> Smoking Warning Mod is a survival expansion mod for Minecraft 1.21.1 with NeoForge. It features tobacco farming, processing, cigarette variants, addiction stages, lung cancer, treatment, HUD display, village no-smoking zones, tobacco villagers, and optional Create / JEI / REI / Jade compatibility. The mod is built around short-term benefits and long-term consequences to warn players about the harms of smoking.
+## Important Notice
 
-## 重要声明
+All content related to smoking, tobacco, lung cancer, and treatment in this mod is intended as **gameplay mechanics and health-awareness storytelling**. It does **not** constitute real medical advice, and it does **not** encourage real-life smoking.
 
-本模组中的吸烟、烟草、肺癌、治疗等内容均为**游戏机制和健康警示创作**，不构成现实医学建议，也**不鼓励现实中吸烟**。
+**Smoking is harmful to your health.**
 
-如果现实生活中存在健康问题，请寻求专业医生帮助。
+If you have real health concerns, please seek professional medical help.
 
-**吸烟有害健康。**
+## Supported Environment
 
-## 支持环境
-
-| 项目 | 说明 |
-|------|------|
+| Item | Details |
+|------|---------|
 | Minecraft | 1.21.1 |
 | Mod Loader | NeoForge |
 | Java | 21 |
-| 必需前置 | 无第三方必需前置 |
+| Required Dependencies | None |
 
-**可选兼容（非必需）：**
+**Optional Compatibility (not required):**
 
-| 模组 | 用途 |
-|------|------|
-| [Create](https://modrinth.com/mod/create) 6.0.10+ | 机械化烟草加工流水线 |
-| [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) | 配方查询 |
-| [REI](https://modrinth.com/mod/rei) 16.x | 配方查询 |
-| [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | 方块信息显示 |
+| Mod | Purpose |
+|-----|---------|
+| [Create](https://modrinth.com/mod/create) 6.0.10+ | Mechanical tobacco processing pipeline |
+| [JEI](https://www.curseforge.com/minecraft/mc-mods/jei) | Recipe viewer |
+| [REI](https://modrinth.com/mod/rei) 16.x | Recipe viewer |
+| [Jade](https://www.curseforge.com/minecraft/mc-mods/jade) | Block info display |
 
-以上所有第三方模组均为**可选兼容**，不是必装前置。
+All third-party mods listed above are **optional** — none are required.
 
-## 主要玩法
+## Gameplay
 
-### 烟草种植
+### Tobacco Farming
 
-新增烟草作物，可在耕地上种植烟草种子。烟草作物有 7 个生长阶段，成熟后可收获烟草叶。
+- Plant tobacco seeds on farmland
+- Tobacco crops grow through 7 stages
+- Harvest mature crops for tobacco leaves
 
-### 基础烟草加工链
-
-```
-烟草叶 → [晾晒架] → 干烟草叶 → [研磨台] → 烟丝 → [烟草工作台] → 香烟
-```
-
-### 香烟系统
-
-- **普通香烟** — 基础香烟，抽完后获得短暂加速和急迫效果
-- **多种变体香烟** — 清凉（薄荷）、蜂蜜、烈焰、幻翼、末影、荧光、红石、下界合金等，各有不同效果
-- **彩蛋香烟** — 华子、荷花、瑞克五代等趣味香烟
-- 每支香烟有耐久值，需要持续吸完，抽完后留下烟蒂
-- 抽完后触发短暂屏幕眩晕效果
-- 抽完后获得短暂正面奖励，但随成瘾程度加深，奖励效果逐渐衰减
-- 肺癌阶段继续抽烟会直接扣血
-
-### 成瘾系统
-
-| 阶段 | 已抽完香烟数 | 惩罚 |
-|------|------------|------|
-| 未成瘾 | 0–4 支 | 无 |
-| 轻度成瘾 | 5–9 支 | 偶尔咳嗽 |
-| 中度成瘾 | 10–19 支 | 咳嗽加重、虚弱、挖掘疲劳、最大生命值下降 |
-| 重度成瘾 / 肺癌 | 20 支以上 | 严重咳嗽、肺癌效果、继续抽烟扣血 |
-
-成瘾阶段越高，惩罚越严重，香烟的正面奖励也越弱。
-
-### 治疗系统
-
-肺癌不能靠一个物品瞬间治好。治疗是一个**成本高、周期长、过程痛苦**的过程，并且必须停止抽烟。
-
-治疗流程：
-
-1. **确诊** — 使用肺部检查仪（需处于重度成瘾或肺癌阶段）
-2. **化疗** — 使用化疗药剂控制病情（+10% 治疗进度，有虚弱、反胃、缓慢副作用）
-3. **放疗** — 使用放疗核心进行治疗（需进度 ≥20%，+20% 进度）
-4. **靶向治疗** — 使用靶向治疗药推进治疗（需进度 ≥40%，+25% 进度）
-5. **康复计划** — 使用康复计划书进入康复阶段（需进度 ≥80%）
-6. 持续一段时间不抽烟
-7. 肺癌进入缓解状态，但成瘾记录**不会完全清空**
-
-治疗期间继续抽烟会导致治疗进度下降；康复期间抽烟会导致病情回退。
-
-### 治疗手册
-
-玩家可以从**大师级烟草村民**处购买《肺癌治疗手册》。手册使用原版书的阅读界面，里面写有完整的治疗流程说明。
-
-### 村庄禁烟区
-
-- 村庄是禁烟区，进入时会收到提示
-- 在村庄区域吸烟会**激怒铁傀儡**
-- 铁傀儡会攻击正在吸烟的玩家
-- 烟草村民可在村庄中生成，大师级售卖治疗手册
-
-### HUD 系统
-
-- 屏幕显示抽烟次数和成瘾阶段
-- 进度条显示距离下一阶段的距离
-- 肺癌阶段显示危险警告
-- 默认按 **H** 键进入 HUD 编辑模式
-- 可拖动位置、滚轮调整大小
-- 位置和大小会保存
-
-### Create / 机械动力可选兼容
-
-**Create 不是必装前置。** 安装了 Create 6.0.10+ 后，玩家将获得一套完整的**烟草自动化工业流水线**。
-
-机械动力路线不会替代原有手工加工方式，原有配方和方块**全部保留**。Create 路线更适合中后期大规模自动化生产。
-
-完整工业流水线：
+### Basic Processing Chain
 
 ```
-烟草叶 → [鼓风机+火/营火] 热风烘干 → 干烟草叶
-干烟草叶 → [石磨] 研磨 / [粉碎轮] 粉碎 → 粗烟丝
-粗烟丝 → [石磨] 二次研磨 / [混合器+糖] 混合 → 精制烟丝
-纸 → [压力机] → 卷烟纸
-线 + 卷烟纸 → [混合器] → 过滤嘴
-卷烟纸 + 精制烟丝 + 过滤嘴 → [序列组装] → 未完成香烟
-未完成香烟 → [压力机] → 香烟
-香烟 + 特殊材料 → [机械手+压力机] → 变体香烟
-末影香烟 → [7步序列组装] → 瑞克五代
-香烟 → [序列组装] → 华子 / 荷花香烟
+Tobacco Leaf → [Drying Rack] → Dried Tobacco Leaf → [Tobacco Grinder] → Tobacco Shreds → [Tobacco Workbench] → Cigarette
 ```
 
-#### 变体香烟机械配方
+### Cigarette System
 
-| 香烟 | 添加材料 |
+- **Regular Cigarette** — Basic cigarette; brief Speed and Haste on finish
+- **Variant Cigarettes** — Menthol, Honey, Blaze, Phantom, Ender, Glow, Redstone, Netherite — each with unique effects
+- **Special Cigarettes** — Huazi, Lotus, Rick V — fun easter-egg variants
+- Every cigarette has durability and must be smoked continuously
+- A cigarette butt remains after finishing
+- Brief screen distortion on finish
+- Positive rewards decay as addiction deepens
+- Smoking in the lung cancer stage deals direct health damage
+
+### Addiction System
+
+| Stage | Cigarettes Smoked | Effects |
+|-------|-------------------|---------|
+| None | 0–4 | No penalties |
+| Light | 5–9 | Occasional coughing |
+| Medium | 10–19 | Worsening cough, Weakness, Mining Fatigue, max health reduction |
+| Heavy / Lung Cancer | 20+ | Severe coughing, lung cancer effect, smoking deals damage |
+
+Higher addiction stages mean harsher penalties and weaker cigarette rewards.
+
+### Treatment System
+
+Lung cancer cannot be cured instantly with a single item. Treatment is **expensive, long-term, and painful** — and requires quitting smoking.
+
+Treatment progression:
+
+1. **Diagnosis** — Use the Lung Scanner (requires Heavy addiction or Lung Cancer stage)
+2. **Chemotherapy** — Use Chemotherapy Medicine to control the disease (+10% progress; causes Weakness, Nausea, Slowness)
+3. **Radiotherapy** — Use Radiotherapy Core (requires ≥20% progress; +20% progress)
+4. **Targeted Therapy** — Use Targeted Therapy Medicine (requires ≥40% progress; +25% progress)
+5. **Rehabilitation Plan** — Use the plan to enter rehab (requires ≥80% progress)
+6. Stay smoke-free for an extended period
+7. Lung cancer enters remission — but addiction records are **not** fully cleared
+
+Smoking during treatment reduces progress. Smoking during rehab causes complete failure.
+
+### Treatment Guide
+
+Players can purchase the **Lung Cancer Treatment Guide** from a Master Tobacco Villager. The guide uses the vanilla book interface and explains the full treatment process.
+
+### Village No-Smoking Zones
+
+- Villages are no-smoking zones; a warning appears on entry
+- Smoking in village areas **provokes Iron Golems**
+- Iron Golems will attack smoking players
+- Tobacco Villagers can spawn in villages; Masters sell the Treatment Guide
+
+### HUD System
+
+- Displays cigarettes smoked and current addiction stage
+- Progress bar shows distance to the next stage
+- Lung cancer stage shows a danger warning
+- Press **H** to enter HUD edit mode
+- Drag to reposition, scroll to resize
+- Position and scale are saved
+
+### Create / Mechanical Power (Optional)
+
+**Create is not required.** When Create 6.0.10+ is installed, a full **automated tobacco processing pipeline** becomes available.
+
+The mechanical route does **not** replace the manual route. Original recipes and blocks (Drying Rack, Tobacco Grinder, Tobacco Workbench) are fully preserved. The Create pipeline is better suited for mid-to-late-game mass automation.
+
+Full industrial pipeline:
+
+```
+Tobacco Leaf → [Encased Fan + Fire/Campfire] → Dried Tobacco Leaf
+Dried Tobacco Leaf → [Millstone] / [Crushing Wheels] → Coarse Tobacco Shreds
+Coarse Tobacco Shreds → [Millstone] / [Mixer + Sugar] → Refined Tobacco Shreds
+Paper → [Mechanical Press] → Cigarette Paper
+String + Cigarette Paper → [Mixer] → Cigarette Filter
+Cigarette Paper + Refined Shreds + Filter → [Sequenced Assembly] → Unfinished Cigarette
+Unfinished Cigarette → [Mechanical Press] → Cigarette
+Cigarette + Special Material → [Deployer + Press] → Variant Cigarette
+Ender Cigarette → [7-Step Sequenced Assembly] → Rick V
+Cigarette → [Sequenced Assembly] → Huazi / Lotus
+```
+
+#### Mechanical Variant Cigarette Recipes
+
+| Cigarette | Material Added |
+|-----------|---------------|
+| Menthol | Ice or Snowball |
+| Honey | Honey Bottle |
+| Blaze | Blaze Powder |
+| Phantom | Phantom Membrane |
+| Ender | Ender Pearl |
+| Glow | Glowstone Dust |
+| Redstone | Redstone Dust |
+| Netherite | Netherite Scrap |
+
+#### New Intermediate Items
+
+| Item | Purpose |
 |------|---------|
-| 清凉香烟 | 冰 或 雪球 |
-| 蜂蜜香烟 | 蜂蜜瓶 |
-| 烈焰香烟 | 烈焰粉 |
-| 幻翼香烟 | 幻翼膜 |
-| 末影香烟 | 末影珍珠 |
-| 荧光香烟 | 荧石粉 |
-| 红石香烟 | 红石 |
-| 下界合金香烟 | 下界合金碎片 |
+| Coarse Tobacco Shreds | First grinding stage |
+| Refined Tobacco Shreds | Rolling material |
+| Cigarette Paper | Rolling material |
+| Cigarette Filter | Rolling material |
+| Unfinished Cigarette | Semi-finished product |
+| Packaged Cigarette | Industrial package; craftable to unpack into cigarettes |
 
-#### 新增中间物品
+### Recipe Viewer Compatibility
 
-| 物品 | 用途 |
-|------|------|
-| 粗烟丝 | 研磨中间产物 |
-| 精制烟丝 | 卷烟原料 |
-| 卷烟纸 | 卷烟材料 |
-| 过滤嘴 | 卷烟材料 |
-| 未完成的香烟 | 半成品 |
-| 包装香烟 | 工业包装，可在工作台拆出香烟 |
+The following optional integrations are supported:
 
-### 信息类模组兼容
+- **JEI** — View all custom recipes (tobacco workbench, drying rack, grinder, Create mechanical)
+- **REI** — View custom recipe categories
+- **Jade** — View drying rack leaf count, drying progress, grinder/workbench info
 
-支持以下可选兼容：
+All are optional and not required.
 
-- **JEI** — 可查看烟草加工配方、治疗物品配方、Create 机械配方
-- **REI** — 可查看本模组自定义配方
-- **Jade** — 可查看晾晒架叶片数量、干燥进度、研磨台和工作台信息
+## Commands
 
-以上均为可选兼容，不是必装前置。
-
-## 配方说明
-
-- **基础路线**：晾晒架、研磨台、烟草工作台（适合游戏前期）
-- **机械路线**：Create 自动化加工（适合中后期，产量更高）
-- **治疗物品**：普通合成配方
-- **高级香烟**：烟草工作台手工路线 + Create 机械路线同时存在
-
-## 指令
-
-仅用于开发测试，需要 OP 权限：
+For development/testing only (requires OP):
 
 ```
-/tobacco find          — 查找并传送到最近的烟草村民或工作台
-/tobacco spawn         — 在玩家身边生成烟草村民和烟草工作台
+/tobacco find   — Locate and teleport to nearest tobacco villager or workbench
+/tobacco spawn  — Spawn a tobacco villager and workbench at your location
 ```
 
-## 许可证
+## License
 
-本项目使用 MIT License 开源。
+MIT License.
 
-## 免责声明
+## Disclaimer
 
-本模组**不鼓励**现实中吸烟。
+This mod does **not** encourage real-life smoking.
 
-吸烟有害健康。
+**Smoking is harmful to your health.**
 
-模组中的肺癌和治疗内容仅为游戏机制，不是医学建议。如有健康问题，请咨询专业医生。
+The lung cancer and treatment content in this mod is gameplay fiction, not medical advice. If you have health concerns, please consult a doctor.
