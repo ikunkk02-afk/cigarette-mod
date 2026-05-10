@@ -1,0 +1,13 @@
+﻿{
+  "type": "smokingwarningmod:tobacco_workbench_recipe",
+  "first": {
+    "item": "smokingwarningmod:ender_cigarette"
+  },
+  "second": {
+    "item": "minecraft:netherite_scrap"
+  },
+  "result": {
+    "id": "smokingwarningmod:rick_v_cigarette",
+    "count": 1
+  }
+}

@@ -11,7 +11,7 @@ public record AddictionHudSyncPayload(
         boolean hasCoughing,
         boolean hasLungCancer,
         boolean isSmoking) implements CustomPacketPayload {
-    public static final Type<AddictionHudSyncPayload> TYPE = new Type<>(cigaretteMod.id("addiction_hud_sync"));
+    public static final Type<AddictionHudSyncPayload> TYPE = new Type<>(SmokingWarningMod.id("addiction_hud_sync"));
     public static final StreamCodec<RegistryFriendlyByteBuf, AddictionHudSyncPayload> STREAM_CODEC = new StreamCodec<>() {
         @Override
         public AddictionHudSyncPayload decode(RegistryFriendlyByteBuf buffer) {

@@ -1,0 +1,92 @@
+﻿{
+  "lighter_click": {
+    "subtitle": "subtitles.smokingwarningmod.lighter_click",
+    "sounds": [
+      "smokingwarningmod:lighter_click"
+    ]
+  },
+  "lighter_use": {
+    "subtitle": "subtitles.smokingwarningmod.lighter_use",
+    "sounds": [
+      "smokingwarningmod:lighter_click"
+    ]
+  },
+  "inhale": {
+    "subtitle": "subtitles.smokingwarningmod.inhale",
+    "sounds": [
+      "smokingwarningmod:inhale"
+    ]
+  },
+  "smoking_inhale": {
+    "subtitle": "subtitles.smokingwarningmod.smoking_inhale",
+    "sounds": [
+      "smokingwarningmod:inhale"
+    ]
+  },
+  "exhale": {
+    "subtitle": "subtitles.smokingwarningmod.exhale",
+    "sounds": [
+      "smokingwarningmod:exhale"
+    ]
+  },
+  "smoking_exhale": {
+    "subtitle": "subtitles.smokingwarningmod.smoking_exhale",
+    "sounds": [
+      "smokingwarningmod:exhale"
+    ]
+  },
+  "cough": {
+    "subtitle": "subtitles.smokingwarningmod.cough",
+    "sounds": [
+      "smokingwarningmod:cough"
+    ]
+  },
+  "coughing": {
+    "subtitle": "subtitles.smokingwarningmod.coughing",
+    "sounds": [
+      "smokingwarningmod:coughing"
+    ]
+  },
+  "lung_cancer": {
+    "subtitle": "subtitles.smokingwarningmod.lung_cancer",
+    "sounds": [
+      "smokingwarningmod:lung_cancer"
+    ]
+  },
+  "rick_v_easter_egg": {
+    "subtitle": "subtitles.smokingwarningmod.rick_v_easter_egg",
+    "sounds": [
+      "smokingwarningmod:rick_v_easter_egg"
+    ]
+  },
+  "drying_rack_place_leaf": {
+    "subtitle": "subtitles.smokingwarningmod.drying_rack_place_leaf",
+    "sounds": [
+      {
+        "name": "smokingwarningmod:lighter_click",
+        "volume": 0.25,
+        "pitch": 0.65
+      }
+    ]
+  },
+  "drying_rack_collect_leaf": {
+    "subtitle": "subtitles.smokingwarningmod.drying_rack_collect_leaf",
+    "sounds": [
+      {
+        "name": "smokingwarningmod:lighter_click",
+        "volume": 0.25,
+        "pitch": 0.9
+      }
+    ]
+  },
+  "tobacco_grinder_use": {
+    "subtitle": "subtitles.smokingwarningmod.tobacco_grinder_use",
+    "sounds": [
+      {
+        "name": "smokingwarningmod:lighter_click",
+        "volume": 0.35,
+        "pitch": 0.45
+      }
+    ]
+  }
+}

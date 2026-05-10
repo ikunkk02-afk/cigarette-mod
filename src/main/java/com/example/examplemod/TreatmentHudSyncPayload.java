@@ -14,7 +14,7 @@ public record TreatmentHudSyncPayload(
         int smokeFreeTicks,
         int treatmentCooldown) implements CustomPacketPayload {
 
-    public static final Type<TreatmentHudSyncPayload> TYPE = new Type<>(cigaretteMod.id("treatment_hud_sync"));
+    public static final Type<TreatmentHudSyncPayload> TYPE = new Type<>(SmokingWarningMod.id("treatment_hud_sync"));
     public static final StreamCodec<RegistryFriendlyByteBuf, TreatmentHudSyncPayload> STREAM_CODEC = new StreamCodec<>() {
         @Override
         public TreatmentHudSyncPayload decode(RegistryFriendlyByteBuf buffer) {

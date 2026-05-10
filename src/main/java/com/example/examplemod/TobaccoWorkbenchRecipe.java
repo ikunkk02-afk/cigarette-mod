@@ -109,12 +109,12 @@ public class TobaccoWorkbenchRecipe implements Recipe<CraftingInput> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return cigaretteMod.TOBACCO_WORKBENCH_RECIPE_SERIALIZER.get();
+        return SmokingWarningMod.TOBACCO_WORKBENCH_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return cigaretteMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get();
+        return SmokingWarningMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get();
     }
 
     public static class Serializer implements RecipeSerializer<TobaccoWorkbenchRecipe> {

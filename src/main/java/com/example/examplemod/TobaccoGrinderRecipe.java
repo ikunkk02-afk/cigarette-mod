@@ -75,12 +75,12 @@ public class TobaccoGrinderRecipe implements Recipe<SingleRecipeInput> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return cigaretteMod.TOBACCO_GRINDER_RECIPE_SERIALIZER.get();
+        return SmokingWarningMod.TOBACCO_GRINDER_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return cigaretteMod.TOBACCO_GRINDER_RECIPE_TYPE.get();
+        return SmokingWarningMod.TOBACCO_GRINDER_RECIPE_TYPE.get();
     }
 
     public static class Serializer implements RecipeSerializer<TobaccoGrinderRecipe> {

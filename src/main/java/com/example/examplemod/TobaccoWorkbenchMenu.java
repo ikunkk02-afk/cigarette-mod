@@ -37,7 +37,7 @@ public class TobaccoWorkbenchMenu extends CraftingMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return AbstractContainerMenu.stillValid(this.access, player, cigaretteMod.TOBACCO_WORKBENCH.get());
+        return AbstractContainerMenu.stillValid(this.access, player, SmokingWarningMod.TOBACCO_WORKBENCH.get());
     }
 
     private void updateTobaccoWorkbenchResult(Level level) {
@@ -66,7 +66,7 @@ public class TobaccoWorkbenchMenu extends CraftingMenu {
         if (input.ingredientCount() != 2) {
             return java.util.Optional.empty();
         }
-        return level.getRecipeManager().getRecipeFor(cigaretteMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get(), input, level);
+        return level.getRecipeManager().getRecipeFor(SmokingWarningMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get(), input, level);
     }
 
     private CraftingInput getWorkbenchInput() {

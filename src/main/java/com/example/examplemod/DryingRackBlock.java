@@ -75,13 +75,13 @@ public class DryingRackBlock extends BaseEntityBlock {
         if (level.isClientSide()) {
             return null;
         }
-        return createTickerHelper(blockEntityType, cigaretteMod.DRYING_RACK_BLOCK_ENTITY.get(), DryingRackBlockEntity::serverTick);
+        return createTickerHelper(blockEntityType, SmokingWarningMod.DRYING_RACK_BLOCK_ENTITY.get(), DryingRackBlockEntity::serverTick);
     }
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         boolean hasRecipe = level.getRecipeManager().getRecipeFor(
-                cigaretteMod.DRYING_RACK_RECIPE_TYPE.get(),
+                SmokingWarningMod.DRYING_RACK_RECIPE_TYPE.get(),
                 new SingleRecipeInput(stack),
                 level).isPresent();
         if (!hasRecipe) {
@@ -105,7 +105,7 @@ public class DryingRackBlock extends BaseEntityBlock {
         }
 
         if (dryingRack.isFull()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.drying_rack_full"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_full"), true);
             return ItemInteractionResult.CONSUME;
         }
 
@@ -114,7 +114,7 @@ public class DryingRackBlock extends BaseEntityBlock {
                 stack.shrink(1);
             }
             level.playSound(null, pos, SoundEvents.GRASS_PLACE, SoundSource.BLOCKS, 0.7F, 0.9F);
-            player.displayClientMessage(Component.translatable("message.cigarettemod.drying_rack_place_leaf", dryingRack.leafCount(), DryingRackBlockEntity.MAX_LEAF_COUNT), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_place_leaf", dryingRack.leafCount(), DryingRackBlockEntity.MAX_LEAF_COUNT), true);
             return ItemInteractionResult.CONSUME;
         }
 
@@ -137,7 +137,7 @@ public class DryingRackBlock extends BaseEntityBlock {
         }
 
         if (!dryingRack.isDried()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.drying_rack_not_done"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_not_done"), true);
             return InteractionResult.CONSUME;
         }
 
@@ -145,7 +145,7 @@ public class DryingRackBlock extends BaseEntityBlock {
         if (!collected.isEmpty()) {
             giveOrDrop(player, collected);
             level.playSound(null, pos, SoundEvents.CROP_BREAK, SoundSource.BLOCKS, 0.7F, 1.15F);
-            player.displayClientMessage(Component.translatable("message.cigarettemod.drying_rack_collect_leaf"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.drying_rack_collect_leaf"), true);
             return InteractionResult.CONSUME;
         }
 

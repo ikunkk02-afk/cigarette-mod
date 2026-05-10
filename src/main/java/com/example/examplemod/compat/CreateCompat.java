@@ -1,7 +1,7 @@
 package com.example.examplemod.compat;
 
 import com.example.examplemod.Config;
-import com.example.examplemod.cigaretteMod;
+import com.example.examplemod.SmokingWarningMod;
 import net.neoforged.fml.ModList;
 
 /**
@@ -21,15 +21,15 @@ public final class CreateCompat {
         initialized = true;
 
         if (!Config.ENABLE_CREATE_COMPAT.get()) {
-            cigaretteMod.LOGGER.info("Create compatibility disabled in config.");
+            SmokingWarningMod.LOGGER.info("Create compatibility disabled in config.");
             return;
         }
 
         if (ModList.get().isLoaded("create")) {
             createLoaded = true;
-            cigaretteMod.LOGGER.info("Create mod detected — enabling mechanical tobacco processing.");
+            SmokingWarningMod.LOGGER.info("Create mod detected — enabling mechanical tobacco processing.");
         } else {
-            cigaretteMod.LOGGER.info("Create mod not found — using vanilla tobacco processing only.");
+            SmokingWarningMod.LOGGER.info("Create mod not found — using vanilla tobacco processing only.");
         }
     }
 

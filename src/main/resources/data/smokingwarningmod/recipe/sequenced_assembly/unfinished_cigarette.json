@@ -1,0 +1,85 @@
+﻿{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "smokingwarningmod:cigarette_paper"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "id": "smokingwarningmod:unfinished_cigarette",
+      "count": 2
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:cigarette_paper"
+        },
+        {
+          "item": "smokingwarningmod:refined_tobacco_shreds"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_variant_cigarette"
+        },
+        {
+          "item": "smokingwarningmod:cigarette_filter"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_variant_cigarette"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_variant_cigarette"
+        },
+        {
+          "item": "smokingwarningmod:refined_tobacco_shreds"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:unfinished_cigarette"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "smokingwarningmod:incomplete_variant_cigarette"
+  }
+}

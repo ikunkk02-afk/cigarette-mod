@@ -46,7 +46,7 @@ public final class VillageNoSmokingHandler {
         // Enter-zone hint: runs for ALL players (including creative)
         if (Config.ENABLE_VILLAGE_NO_SMOKING_ENTER_HINT.getAsBoolean()) {
             if (isVillage && !data.wasInVillageZone() && data.villageEnterHintCooldown() <= 0) {
-                player.displayClientMessage(Component.translatable("message.cigarettemod.village.no_smoking_enter"), true);
+                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.village.no_smoking_enter"), true);
                 data.setVillageEnterHintCooldown(Config.VILLAGE_NO_SMOKING_ENTER_HINT_COOLDOWN_TICKS.getAsInt());
             }
             data.setWasInVillageZone(isVillage);
@@ -72,7 +72,7 @@ public final class VillageNoSmokingHandler {
             return;
         }
 
-        player.displayClientMessage(Component.translatable("message.cigarettemod.village.no_smoking"), true);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.village.no_smoking"), true);
         data.setNoSmokingWarningCooldown(Config.VILLAGE_NO_SMOKING_WARNING_COOLDOWN_TICKS.getAsInt());
 
         // Sound

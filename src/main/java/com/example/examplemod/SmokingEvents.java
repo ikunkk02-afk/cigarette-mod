@@ -82,9 +82,9 @@ public class SmokingEvents {
     public static void stopSmoking(Player player, boolean completed, Component completedMessage) {
         PlayerSmokingData.get(player).setSmokingTicks(0);
         if (completed) {
-            player.displayClientMessage(completedMessage == null ? Component.translatable("message.cigarettemod.smoking_completed") : completedMessage, true);
+            player.displayClientMessage(completedMessage == null ? Component.translatable("message.SmokingWarningMod.smoking_completed") : completedMessage, true);
         } else {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.smoking_stopped"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.smoking_stopped"), true);
         }
         if (player instanceof ServerPlayer serverPlayer) {
             AddictionHudSync.syncTo(serverPlayer);
@@ -129,7 +129,7 @@ public class SmokingEvents {
 
         boolean lungCancerStage = isLungCancerStage(player, data);
         if (lungCancerStage && smokingTicks == 1 && Config.ENABLE_LUNG_CANCER_SMOKING_DAMAGE.getAsBoolean()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.lung_cancer_smoking_started"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer_smoking_started"), true);
         }
 
         int interval = Config.SMOKING_INTERVAL_TICKS.getAsInt();
@@ -191,7 +191,7 @@ public class SmokingEvents {
     }
 
     private static void giveCigaretteButt(ServerPlayer player) {
-        ItemStack butt = new ItemStack(cigaretteMod.CIGARETTE_BUTT.get());
+        ItemStack butt = new ItemStack(SmokingWarningMod.CIGARETTE_BUTT.get());
         if (!player.getInventory().add(butt)) {
             player.drop(butt, false);
         }
@@ -239,7 +239,7 @@ public class SmokingEvents {
         if (hurtForLungCancerSmoking(player, Config.LUNG_CANCER_SMOKING_DAMAGE_AMOUNT.getAsDouble())) {
             playLungCancerSmokingDamageSound(player);
             if (data.lungCancerSmokingMessageCooldown() <= 0) {
-                player.displayClientMessage(Component.translatable("message.cigarettemod.lung_cancer_smoking_pain"), true);
+                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer_smoking_pain"), true);
                 data.setLungCancerSmokingMessageCooldown(LUNG_CANCER_SMOKING_MESSAGE_COOLDOWN_TICKS);
             }
         }
@@ -263,7 +263,7 @@ public class SmokingEvents {
 
         if (hurtForLungCancerSmoking(player, damage)) {
             playLungCancerSmokingDamageSound(player);
-            player.displayClientMessage(Component.translatable("message.cigarettemod.lung_cancer_finish_damage"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.lung_cancer_finish_damage"), true);
         }
     }
 
@@ -285,7 +285,7 @@ public class SmokingEvents {
 
     private static boolean isLungCancerStage(ServerPlayer player, PlayerSmokingData data) {
         return data.addictionStage() >= SmokingAddictionManager.STAGE_HEAVY
-                || player.hasEffect(cigaretteMod.LUNG_CANCER)
+                || player.hasEffect(SmokingWarningMod.LUNG_CANCER)
                 || data.smokedCigaretteCount() >= Config.HEAVY_ADDICTION_THRESHOLD.getAsInt();
     }
 
@@ -298,16 +298,16 @@ public class SmokingEvents {
 
     private static void playLungCancerSmokingDamageSound(ServerPlayer player) {
         try {
-            player.serverLevel().playSound(null, player.blockPosition(), cigaretteMod.LUNG_CANCER_SOUND.get(), SoundSource.PLAYERS, 0.85F, 0.75F + player.getRandom().nextFloat() * 0.1F);
+            player.serverLevel().playSound(null, player.blockPosition(), SmokingWarningMod.LUNG_CANCER_SOUND.get(), SoundSource.PLAYERS, 0.85F, 0.75F + player.getRandom().nextFloat() * 0.1F);
         } catch (RuntimeException exception) {
-            player.serverLevel().playSound(null, player.blockPosition(), cigaretteMod.COUGHING_SOUND.get(), SoundSource.PLAYERS, 0.75F, 0.9F + player.getRandom().nextFloat() * 0.15F);
+            player.serverLevel().playSound(null, player.blockPosition(), SmokingWarningMod.COUGHING_SOUND.get(), SoundSource.PLAYERS, 0.75F, 0.9F + player.getRandom().nextFloat() * 0.15F);
         }
     }
 
     private static void playSmokingPulse(ServerPlayer player) {
         ServerLevel level = player.serverLevel();
-        level.playSound(null, player.blockPosition(), cigaretteMod.SMOKING_INHALE.get(), SoundSource.PLAYERS, 0.35F, 0.95F + player.getRandom().nextFloat() * 0.1F);
-        level.playSound(null, player.blockPosition(), cigaretteMod.SMOKING_EXHALE.get(), SoundSource.PLAYERS, 0.28F, 0.95F + player.getRandom().nextFloat() * 0.1F);
+        level.playSound(null, player.blockPosition(), SmokingWarningMod.SMOKING_INHALE.get(), SoundSource.PLAYERS, 0.35F, 0.95F + player.getRandom().nextFloat() * 0.1F);
+        level.playSound(null, player.blockPosition(), SmokingWarningMod.SMOKING_EXHALE.get(), SoundSource.PLAYERS, 0.28F, 0.95F + player.getRandom().nextFloat() * 0.1F);
     }
 
     private static void spawnSmoke(ServerLevel level, ServerPlayer player) {

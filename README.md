@@ -180,6 +180,25 @@ For development/testing only (requires OP):
 /tobacco spawn  — Spawn a tobacco villager and workbench at your location
 ```
 
+## Building from Source
+
+To compile the mod with full JEI/REI compatibility, place the following JAR files in the project root directory before running `./gradlew build`:
+
+| File | Purpose |
+|------|---------|
+| `jei-1.21.1-neoforge-19.27.0.340.jar` | JEI compile-only API |
+| `RoughlyEnoughItems-16.0.799-neoforge.jar` | REI compile-only API |
+| `architectury-13.0.8-neoforge.jar` | REI dependency |
+| `cloth-config-15.0.140-neoforge.jar` | REI dependency |
+
+These are **compileOnly** dependencies — they are only needed during compilation and will **not** be bundled into the final mod JAR. The mod will function without them if you're not using an IDE with those APIs configured.
+
+```
+./gradlew build
+```
+
+The output JAR will be at `build/libs/smokingwarningmod-<version>.jar`.
+
 ## License
 
 MIT License.

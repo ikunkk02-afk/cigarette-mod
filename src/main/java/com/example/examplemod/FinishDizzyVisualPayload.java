@@ -7,7 +7,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public record FinishDizzyVisualPayload(int ticks) implements CustomPacketPayload {
-    public static final Type<FinishDizzyVisualPayload> TYPE = new Type<>(cigaretteMod.id("finish_dizzy_visual"));
+    public static final Type<FinishDizzyVisualPayload> TYPE = new Type<>(SmokingWarningMod.id("finish_dizzy_visual"));
     public static final StreamCodec<RegistryFriendlyByteBuf, FinishDizzyVisualPayload> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_INT,
             FinishDizzyVisualPayload::ticks,
@@ -27,7 +27,7 @@ public record FinishDizzyVisualPayload(int ticks) implements CustomPacketPayload
             Class<?> visuals = Class.forName("com.example.examplemod.CigaretteDizzyVisuals");
             visuals.getMethod("start", int.class).invoke(null, ticks);
         } catch (ReflectiveOperationException exception) {
-            cigaretteMod.LOGGER.warn("Failed to start cigarette finish dizzy visual", exception);
+            SmokingWarningMod.LOGGER.warn("Failed to start cigarette finish dizzy visual", exception);
         }
     }
 }

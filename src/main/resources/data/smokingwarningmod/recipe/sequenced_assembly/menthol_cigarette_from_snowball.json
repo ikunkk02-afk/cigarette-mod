@@ -1,0 +1,53 @@
+﻿{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "smokingwarningmod:cigarette"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "id": "smokingwarningmod:menthol_cigarette",
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:cigarette"
+        },
+        {
+          "item": "minecraft:snowball"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_variant_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_variant_cigarette"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:menthol_cigarette"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "smokingwarningmod:incomplete_variant_cigarette"
+  }
+}

@@ -41,7 +41,7 @@ public class TobaccoGrinderBlock extends Block {
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         SingleRecipeInput input = new SingleRecipeInput(stack);
         java.util.Optional<RecipeHolder<TobaccoGrinderRecipe>> recipe = level.getRecipeManager().getRecipeFor(
-                cigaretteMod.TOBACCO_GRINDER_RECIPE_TYPE.get(),
+                SmokingWarningMod.TOBACCO_GRINDER_RECIPE_TYPE.get(),
                 input,
                 level);
         if (recipe.isEmpty()) {
@@ -57,7 +57,7 @@ public class TobaccoGrinderBlock extends Block {
         }
         giveOrDrop(player, recipe.get().value().assemble(input, level.registryAccess()));
         level.playSound(null, pos, SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 0.8F, 1.0F);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.tobacco_grinder_use"), true);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.tobacco_grinder_use"), true);
         return ItemInteractionResult.CONSUME;
     }
 

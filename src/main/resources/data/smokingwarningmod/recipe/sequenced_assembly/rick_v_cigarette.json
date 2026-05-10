@@ -1,0 +1,130 @@
+﻿{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "smokingwarningmod:ender_cigarette"
+  },
+  "loops": 1,
+  "results": [
+    {
+      "id": "smokingwarningmod:rick_v_cigarette",
+      "count": 1
+    }
+  ],
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:ender_cigarette"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_rick_v_cigarette"
+        },
+        {
+          "item": "minecraft:glowstone_dust"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_rick_v_cigarette"
+        },
+        {
+          "item": "minecraft:phantom_membrane"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_rick_v_cigarette"
+        },
+        {
+          "item": "minecraft:honey_bottle"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "smokingwarningmod:incomplete_rick_v_cigarette"
+        },
+        {
+          "item": "minecraft:netherite_scrap"
+        }
+      ],
+      "results": [
+        {
+          "id": "smokingwarningmod:rick_v_cigarette"
+        }
+      ]
+    }
+  ],
+  "transitional_item": {
+    "id": "smokingwarningmod:incomplete_rick_v_cigarette"
+  }
+}

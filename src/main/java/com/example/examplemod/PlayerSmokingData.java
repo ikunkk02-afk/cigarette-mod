@@ -5,7 +5,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.player.Player;
 
 public class PlayerSmokingData {
-    private static final String ROOT = "cigarettemod_player_data";
+    private static final String ROOT = "smokingwarningmod_player_data";
     private static final String ADDICTION = "addiction";
     private static final String LUNG_DAMAGE = "lungDamage";
     private static final String WITHDRAWAL_TICKS = "withdrawalTicks";

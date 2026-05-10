@@ -46,27 +46,27 @@ public final class TobaccoLocateCommand {
 
         AABB area = new AABB(center).inflate(SEARCH_RADIUS);
         List<Villager> villagers = level.getEntitiesOfClass(Villager.class, area,
-                v -> v.getVillagerData().getProfession() == cigaretteMod.TOBACCO_VILLAGER.get());
+                v -> v.getVillagerData().getProfession() == SmokingWarningMod.TOBACCO_VILLAGER.get());
 
         if (!villagers.isEmpty()) {
             BlockPos pos = villagers.get(0).blockPosition();
             teleportPlayer(player, pos);
-            source.sendSuccess(() -> Component.translatable("command.cigarettemod.tobacco.found_villager",
+            source.sendSuccess(() -> Component.translatable("command.SmokingWarningMod.tobacco.found_villager",
                     pos.getX(), pos.getY(), pos.getZ()), true);
             return 1;
         }
 
         BlockPos workbenchPos = BlockPos.findClosestMatch(center, SEARCH_RADIUS / 2, 128,
-                pos -> level.getBlockState(pos).is(cigaretteMod.TOBACCO_WORKBENCH.get())).orElse(null);
+                pos -> level.getBlockState(pos).is(SmokingWarningMod.TOBACCO_WORKBENCH.get())).orElse(null);
 
         if (workbenchPos != null) {
             teleportPlayer(player, workbenchPos.above());
-            source.sendSuccess(() -> Component.translatable("command.cigarettemod.tobacco.found_workbench",
+            source.sendSuccess(() -> Component.translatable("command.SmokingWarningMod.tobacco.found_workbench",
                     workbenchPos.getX(), workbenchPos.getY(), workbenchPos.getZ()), true);
             return 1;
         }
 
-        source.sendFailure(Component.translatable("command.cigarettemod.tobacco.not_found"));
+        source.sendFailure(Component.translatable("command.SmokingWarningMod.tobacco.not_found"));
         return 0;
     }
 
@@ -78,7 +78,7 @@ public final class TobaccoLocateCommand {
 
         BlockState existing = level.getBlockState(spawnPos);
         if (existing.isAir() || existing.canBeReplaced()) {
-            level.setBlock(spawnPos, cigaretteMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
+            level.setBlock(spawnPos, SmokingWarningMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
         }
 
         Villager villager = EntityType.VILLAGER.create(level);
@@ -86,12 +86,12 @@ public final class TobaccoLocateCommand {
             villager.moveTo(spawnPos.getX() + 0.5D, spawnPos.getY() + 1.0D, spawnPos.getZ() + 0.5D,
                     level.getRandom().nextFloat() * 360.0F, 0.0F);
             villager.setVillagerData(villager.getVillagerData()
-                    .setProfession(cigaretteMod.TOBACCO_VILLAGER.get()));
+                    .setProfession(SmokingWarningMod.TOBACCO_VILLAGER.get()));
             villager.finalizeSpawn(level, level.getCurrentDifficultyAt(spawnPos), MobSpawnType.COMMAND, null);
             level.addFreshEntity(villager);
         }
 
-        source.sendSuccess(() -> Component.translatable("command.cigarettemod.tobacco.spawned"), true);
+        source.sendSuccess(() -> Component.translatable("command.SmokingWarningMod.tobacco.spawned"), true);
         return 1;
     }
 

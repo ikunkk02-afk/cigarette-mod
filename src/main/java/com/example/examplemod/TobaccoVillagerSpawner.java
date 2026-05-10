@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 public final class TobaccoVillagerSpawner {
-    private static final String DATA_KEY = "cigarettemod_tobacco_villages";
+    private static final String DATA_KEY = "smokingwarningmod_tobacco_villages";
     private static final int BELL_SEARCH_RADIUS = 128;
     private static final int HOUSE_PLACEMENT_RADIUS = 24;
     // Only process each bell once per world
@@ -43,7 +43,7 @@ public final class TobaccoVillagerSpawner {
             villager.moveTo(pos.getX() + 2.5D, pos.getY(), pos.getZ() + 2.5D,
                     level.getRandom().nextFloat() * 360.0F, 0.0F);
             villager.setVillagerData(villager.getVillagerData()
-                    .setProfession(cigaretteMod.TOBACCO_VILLAGER.get()));
+                    .setProfession(SmokingWarningMod.TOBACCO_VILLAGER.get()));
             villager.finalizeSpawn(level, level.getCurrentDifficultyAt(pos),
                     MobSpawnType.COMMAND, null);
             level.addFreshEntity(villager);
@@ -85,7 +85,7 @@ public final class TobaccoVillagerSpawner {
                 BlockPos housePos = findHouseSpot(level, bellPos, HOUSE_PLACEMENT_RADIUS);
                 if (housePos == null) {
                     if (Config.TOBACCO_VILLAGER_DEBUG.getAsBoolean()) {
-                        cigaretteMod.LOGGER.info("TobaccoVillager: No suitable spot near bell at {}", bellPos);
+                        SmokingWarningMod.LOGGER.info("TobaccoVillager: No suitable spot near bell at {}", bellPos);
                     }
                     continue;
                 }
@@ -93,10 +93,10 @@ public final class TobaccoVillagerSpawner {
                 // Check no existing tobacco villager nearby
                 AABB checkArea = new AABB(housePos).inflate(64);
                 List<Villager> existing = level.getEntitiesOfClass(Villager.class, checkArea,
-                        v -> v.getVillagerData().getProfession() == cigaretteMod.TOBACCO_VILLAGER.get());
+                        v -> v.getVillagerData().getProfession() == SmokingWarningMod.TOBACCO_VILLAGER.get());
                 if (!existing.isEmpty()) {
                     if (Config.TOBACCO_VILLAGER_DEBUG.getAsBoolean()) {
-                        cigaretteMod.LOGGER.info("TobaccoVillager: Tobacco villager already exists near bell at {}", bellPos);
+                        SmokingWarningMod.LOGGER.info("TobaccoVillager: Tobacco villager already exists near bell at {}", bellPos);
                     }
                     continue;
                 }
@@ -111,13 +111,13 @@ public final class TobaccoVillagerSpawner {
                     villager.moveTo(villagerPos.getX() + 0.5D, villagerPos.getY(), villagerPos.getZ() + 0.5D,
                             level.getRandom().nextFloat() * 360.0F, 0.0F);
                     villager.setVillagerData(villager.getVillagerData()
-                            .setProfession(cigaretteMod.TOBACCO_VILLAGER.get()));
+                            .setProfession(SmokingWarningMod.TOBACCO_VILLAGER.get()));
                     villager.finalizeSpawn(level, level.getCurrentDifficultyAt(housePos),
                             MobSpawnType.NATURAL, null);
                     level.addFreshEntity(villager);
                 }
 
-                cigaretteMod.LOGGER.info("TobaccoVillager: Built house and spawned tobacco villager near bell at {} (house at {})", bellPos, housePos);
+                SmokingWarningMod.LOGGER.info("TobaccoVillager: Built house and spawned tobacco villager near bell at {} (house at {})", bellPos, housePos);
                 if (Config.TOBACCO_VILLAGER_DEBUG.getAsBoolean()) {
                     for (var p : level.players()) {
                         p.displayClientMessage(Component.literal("[DEBUG] Tobacco villager house built at " + housePos.getX() + ", " + housePos.getZ()), false);
@@ -189,7 +189,7 @@ public final class TobaccoVillagerSpawner {
         ResourceLocation structureId = getVanillaHouseStructure(villageType);
 
         if (Config.TOBACCO_VILLAGER_DEBUG.getAsBoolean()) {
-            cigaretteMod.LOGGER.info("TobaccoVillager: Loading {} style house from {} at {}", villageType, structureId, origin);
+            SmokingWarningMod.LOGGER.info("TobaccoVillager: Loading {} style house from {} at {}", villageType, structureId, origin);
         }
 
         // Try to load and place the vanilla structure
@@ -214,24 +214,24 @@ public final class TobaccoVillagerSpawner {
             }
 
             if (Config.TOBACCO_VILLAGER_DEBUG.getAsBoolean()) {
-                cigaretteMod.LOGGER.info("TobaccoVillager: Successfully placed vanilla house {} at {}", structureId, origin);
+                SmokingWarningMod.LOGGER.info("TobaccoVillager: Successfully placed vanilla house {} at {}", structureId, origin);
             }
 
             // Place tobacco workbench near the center of the house
             BlockPos benchPos = origin.offset(2, 1, 2);
             if (level.getBlockState(benchPos).isAir()) {
-                level.setBlock(benchPos, cigaretteMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
+                level.setBlock(benchPos, SmokingWarningMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
             } else {
                 // Try an alternate spot
                 BlockPos altPos = origin.offset(2, 1, 3);
                 if (level.getBlockState(altPos).isAir() || level.getBlockState(altPos).canBeReplaced()) {
-                    level.setBlock(altPos, cigaretteMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
+                    level.setBlock(altPos, SmokingWarningMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
                 }
             }
         } else {
             // Fallback: build a very simple 5x5 house
             if (Config.TOBACCO_VILLAGER_DEBUG.getAsBoolean()) {
-                cigaretteMod.LOGGER.warn("TobaccoVillager: Structure {} not found, using fallback house", structureId);
+                SmokingWarningMod.LOGGER.warn("TobaccoVillager: Structure {} not found, using fallback house", structureId);
             }
             buildFallbackHouse(level, origin);
         }
@@ -328,7 +328,7 @@ public final class TobaccoVillagerSpawner {
                 .setValue(net.minecraft.world.level.block.DoorBlock.FACING, Direction.SOUTH)
                 .setValue(net.minecraft.world.level.block.DoorBlock.HALF, net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER), 3);
 
-        level.setBlock(origin.offset(2, 1, 3), cigaretteMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
+        level.setBlock(origin.offset(2, 1, 3), SmokingWarningMod.TOBACCO_WORKBENCH.get().defaultBlockState(), 3);
         level.setBlock(origin.offset(4, 2, 4), Blocks.TORCH.defaultBlockState(), 3);
     }
 

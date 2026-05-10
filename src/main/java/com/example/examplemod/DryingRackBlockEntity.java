@@ -20,7 +20,7 @@ public class DryingRackBlockEntity extends BlockEntity {
     private ItemStack dryingInput = ItemStack.EMPTY;
 
     public DryingRackBlockEntity(BlockPos pos, BlockState blockState) {
-        super(cigaretteMod.DRYING_RACK_BLOCK_ENTITY.get(), pos, blockState);
+        super(SmokingWarningMod.DRYING_RACK_BLOCK_ENTITY.get(), pos, blockState);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, DryingRackBlockEntity blockEntity) {
@@ -125,19 +125,19 @@ public class DryingRackBlockEntity extends BlockEntity {
 
     private ItemStack getDryingInput() {
         if (this.dryingInput.isEmpty()) {
-            return new ItemStack(cigaretteMod.TOBACCO_LEAF.get());
+            return new ItemStack(SmokingWarningMod.TOBACCO_LEAF.get());
         }
         return this.dryingInput.copy();
     }
 
     private ItemStack getDryingResult() {
         if (this.level == null) {
-            return new ItemStack(cigaretteMod.DRIED_TOBACCO_LEAF.get());
+            return new ItemStack(SmokingWarningMod.DRIED_TOBACCO_LEAF.get());
         }
         return this.findRecipe(this.level)
                 .map(holder -> holder.value().assemble(new SingleRecipeInput(this.getDryingInput()), this.level.registryAccess()))
                 .filter(stack -> !stack.isEmpty())
-                .orElseGet(() -> new ItemStack(cigaretteMod.DRIED_TOBACCO_LEAF.get()));
+                .orElseGet(() -> new ItemStack(SmokingWarningMod.DRIED_TOBACCO_LEAF.get()));
     }
 
     private int currentDryingTime(Level level) {
@@ -151,7 +151,7 @@ public class DryingRackBlockEntity extends BlockEntity {
             return java.util.Optional.empty();
         }
         return level.getRecipeManager().getRecipeFor(
-                cigaretteMod.DRYING_RACK_RECIPE_TYPE.get(),
+                SmokingWarningMod.DRYING_RACK_RECIPE_TYPE.get(),
                 new SingleRecipeInput(this.getDryingInput()),
                 level);
     }
@@ -205,7 +205,7 @@ public class DryingRackBlockEntity extends BlockEntity {
             this.isDried = false;
             this.dryingInput = ItemStack.EMPTY;
         } else if (this.dryingInput.isEmpty()) {
-            this.dryingInput = new ItemStack(cigaretteMod.TOBACCO_LEAF.get());
+            this.dryingInput = new ItemStack(SmokingWarningMod.TOBACCO_LEAF.get());
         }
     }
 }

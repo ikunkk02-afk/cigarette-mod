@@ -3,7 +3,7 @@ package com.example.examplemod.compat;
 import com.example.examplemod.DryingRackRecipe;
 import com.example.examplemod.TobaccoGrinderRecipe;
 import com.example.examplemod.TobaccoWorkbenchRecipe;
-import com.example.examplemod.cigaretteMod;
+import com.example.examplemod.SmokingWarningMod;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaTypes;
@@ -28,14 +28,14 @@ import java.util.List;
 
 @JeiPlugin
 public class TobaccoJeiPlugin implements IModPlugin {
-    private static final ResourceLocation UID = cigaretteMod.id("jei");
+    private static final ResourceLocation UID = SmokingWarningMod.id("jei");
 
     public static final RecipeType<TobaccoWorkbenchRecipe> TOBACCO_WORKBENCH =
-            RecipeType.create("cigarettemod", "tobacco_workbench", TobaccoWorkbenchRecipe.class);
+            RecipeType.create("smokingwarningmod", "tobacco_workbench", TobaccoWorkbenchRecipe.class);
     public static final RecipeType<DryingRackRecipe> DRYING_RACK =
-            RecipeType.create("cigarettemod", "drying_rack", DryingRackRecipe.class);
+            RecipeType.create("smokingwarningmod", "drying_rack", DryingRackRecipe.class);
     public static final RecipeType<TobaccoGrinderRecipe> TOBACCO_GRINDER =
-            RecipeType.create("cigarettemod", "tobacco_grinder", TobaccoGrinderRecipe.class);
+            RecipeType.create("smokingwarningmod", "tobacco_grinder", TobaccoGrinderRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -54,13 +54,13 @@ public class TobaccoJeiPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         var rm = Minecraft.getInstance().level.getRecipeManager();
         registration.addRecipes(TOBACCO_WORKBENCH,
-                rm.getAllRecipesFor(cigaretteMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get()).stream()
+                rm.getAllRecipesFor(SmokingWarningMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get()).stream()
                         .map(r -> r.value()).toList());
         registration.addRecipes(DRYING_RACK,
-                rm.getAllRecipesFor(cigaretteMod.DRYING_RACK_RECIPE_TYPE.get()).stream()
+                rm.getAllRecipesFor(SmokingWarningMod.DRYING_RACK_RECIPE_TYPE.get()).stream()
                         .map(r -> r.value()).toList());
         registration.addRecipes(TOBACCO_GRINDER,
-                rm.getAllRecipesFor(cigaretteMod.TOBACCO_GRINDER_RECIPE_TYPE.get()).stream()
+                rm.getAllRecipesFor(SmokingWarningMod.TOBACCO_GRINDER_RECIPE_TYPE.get()).stream()
                         .map(r -> r.value()).toList());
     }
 
@@ -72,12 +72,12 @@ public class TobaccoJeiPlugin implements IModPlugin {
 
         @Override
         public Component getTitle() {
-            return Component.translatable("jei.category.cigarettemod.tobacco_workbench");
+            return Component.translatable("jei.category.SmokingWarningMod.tobacco_workbench");
         }
 
         @Override
         public IDrawable getIcon() {
-            return new ItemDrawable(cigaretteMod.TOBACCO_WORKBENCH_ITEM.toStack());
+            return new ItemDrawable(SmokingWarningMod.TOBACCO_WORKBENCH_ITEM.toStack());
         }
 
         @Override
@@ -96,7 +96,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
         @Override
         public void draw(TobaccoWorkbenchRecipe recipe, IRecipeSlotsView slots, GuiGraphics g, double mouseX, double mouseY) {
             Font font = Minecraft.getInstance().font;
-            g.drawString(font, Component.translatable("jei.cigarettemod.tobacco_workbench.description"),
+            g.drawString(font, Component.translatable("jei.SmokingWarningMod.tobacco_workbench.description"),
                     1, 42, 0xFF808080, false);
         }
     }
@@ -109,12 +109,12 @@ public class TobaccoJeiPlugin implements IModPlugin {
 
         @Override
         public Component getTitle() {
-            return Component.translatable("jei.category.cigarettemod.drying_rack");
+            return Component.translatable("jei.category.SmokingWarningMod.drying_rack");
         }
 
         @Override
         public IDrawable getIcon() {
-            return new ItemDrawable(cigaretteMod.DRYING_RACK_ITEM.toStack());
+            return new ItemDrawable(SmokingWarningMod.DRYING_RACK_ITEM.toStack());
         }
 
         @Override
@@ -133,7 +133,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
         public void draw(DryingRackRecipe recipe, IRecipeSlotsView slots, GuiGraphics g, double mouseX, double mouseY) {
             Font font = Minecraft.getInstance().font;
             int seconds = recipe.dryingTime() / 20;
-            g.drawString(font, Component.translatable("jei.cigarettemod.drying_rack.description"),
+            g.drawString(font, Component.translatable("jei.SmokingWarningMod.drying_rack.description"),
                     1, 42, 0xFF808080, false);
             g.drawString(font, seconds + "s", 75, 5, 0xFF555555, false);
         }
@@ -147,12 +147,12 @@ public class TobaccoJeiPlugin implements IModPlugin {
 
         @Override
         public Component getTitle() {
-            return Component.translatable("jei.category.cigarettemod.tobacco_grinder");
+            return Component.translatable("jei.category.SmokingWarningMod.tobacco_grinder");
         }
 
         @Override
         public IDrawable getIcon() {
-            return new ItemDrawable(cigaretteMod.TOBACCO_GRINDER_ITEM.toStack());
+            return new ItemDrawable(SmokingWarningMod.TOBACCO_GRINDER_ITEM.toStack());
         }
 
         @Override
@@ -170,7 +170,7 @@ public class TobaccoJeiPlugin implements IModPlugin {
         @Override
         public void draw(TobaccoGrinderRecipe recipe, IRecipeSlotsView slots, GuiGraphics g, double mouseX, double mouseY) {
             Font font = Minecraft.getInstance().font;
-            g.drawString(font, Component.translatable("jei.cigarettemod.tobacco_grinder.description"),
+            g.drawString(font, Component.translatable("jei.SmokingWarningMod.tobacco_grinder.description"),
                     1, 42, 0xFF808080, false);
         }
     }

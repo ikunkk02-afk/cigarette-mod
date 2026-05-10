@@ -1,0 +1,13 @@
+﻿{
+  "type": "smokingwarningmod:tobacco_workbench_recipe",
+  "first": {
+    "item": "smokingwarningmod:cigarette"
+  },
+  "second": {
+    "item": "minecraft:glowstone_dust"
+  },
+  "result": {
+    "id": "smokingwarningmod:glow_cigarette",
+    "count": 1
+  }
+}

@@ -86,12 +86,12 @@ public class DryingRackRecipe implements Recipe<SingleRecipeInput> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return cigaretteMod.DRYING_RACK_RECIPE_SERIALIZER.get();
+        return SmokingWarningMod.DRYING_RACK_RECIPE_SERIALIZER.get();
     }
 
     @Override
     public RecipeType<?> getType() {
-        return cigaretteMod.DRYING_RACK_RECIPE_TYPE.get();
+        return SmokingWarningMod.DRYING_RACK_RECIPE_TYPE.get();
     }
 
     public static class Serializer implements RecipeSerializer<DryingRackRecipe> {

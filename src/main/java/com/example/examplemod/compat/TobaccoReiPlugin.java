@@ -3,7 +3,7 @@ package com.example.examplemod.compat;
 import com.example.examplemod.DryingRackRecipe;
 import com.example.examplemod.TobaccoGrinderRecipe;
 import com.example.examplemod.TobaccoWorkbenchRecipe;
-import com.example.examplemod.cigaretteMod;
+import com.example.examplemod.SmokingWarningMod;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
@@ -30,11 +30,11 @@ import java.util.List;
 @REIPluginClient
 public class TobaccoReiPlugin implements REIClientPlugin {
     public static final CategoryIdentifier<BasicDisplay> TOBACCO_WORKBENCH =
-            CategoryIdentifier.of("cigarettemod", "tobacco_workbench");
+            CategoryIdentifier.of("smokingwarningmod", "tobacco_workbench");
     public static final CategoryIdentifier<BasicDisplay> DRYING_RACK =
-            CategoryIdentifier.of("cigarettemod", "drying_rack");
+            CategoryIdentifier.of("smokingwarningmod", "drying_rack");
     public static final CategoryIdentifier<BasicDisplay> TOBACCO_GRINDER =
-            CategoryIdentifier.of("cigarettemod", "tobacco_grinder");
+            CategoryIdentifier.of("smokingwarningmod", "tobacco_grinder");
 
     @Override
     public void registerCategories(CategoryRegistry registry) {
@@ -46,7 +46,7 @@ public class TobaccoReiPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         var rm = net.minecraft.client.Minecraft.getInstance().level.getRecipeManager();
-        for (RecipeHolder<?> holder : rm.getAllRecipesFor(cigaretteMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get())) {
+        for (RecipeHolder<?> holder : rm.getAllRecipesFor(SmokingWarningMod.TOBACCO_WORKBENCH_RECIPE_TYPE.get())) {
             var recipe = (TobaccoWorkbenchRecipe) holder.value();
             registry.add(new BasicDisplay(
                     List.of(toIngredient(recipe.first().getItems()), toIngredient(recipe.second().getItems())),
@@ -54,7 +54,7 @@ public class TobaccoReiPlugin implements REIClientPlugin {
                 @Override public CategoryIdentifier<?> getCategoryIdentifier() { return TOBACCO_WORKBENCH; }
             });
         }
-        for (RecipeHolder<?> holder : rm.getAllRecipesFor(cigaretteMod.DRYING_RACK_RECIPE_TYPE.get())) {
+        for (RecipeHolder<?> holder : rm.getAllRecipesFor(SmokingWarningMod.DRYING_RACK_RECIPE_TYPE.get())) {
             var recipe = (DryingRackRecipe) holder.value();
             registry.add(new BasicDisplay(
                     List.of(toIngredient(recipe.ingredient().getItems())),
@@ -62,7 +62,7 @@ public class TobaccoReiPlugin implements REIClientPlugin {
                 @Override public CategoryIdentifier<?> getCategoryIdentifier() { return DRYING_RACK; }
             });
         }
-        for (RecipeHolder<?> holder : rm.getAllRecipesFor(cigaretteMod.TOBACCO_GRINDER_RECIPE_TYPE.get())) {
+        for (RecipeHolder<?> holder : rm.getAllRecipesFor(SmokingWarningMod.TOBACCO_GRINDER_RECIPE_TYPE.get())) {
             var recipe = (TobaccoGrinderRecipe) holder.value();
             registry.add(new BasicDisplay(
                     List.of(toIngredient(recipe.ingredient().getItems())),
@@ -82,8 +82,8 @@ public class TobaccoReiPlugin implements REIClientPlugin {
 
     static class TobaccoWorkbenchCategory implements DisplayCategory<BasicDisplay> {
         @Override public CategoryIdentifier<BasicDisplay> getCategoryIdentifier() { return TOBACCO_WORKBENCH; }
-        @Override public Component getTitle() { return Component.translatable("rei.category.cigarettemod.tobacco_workbench"); }
-        @Override public Renderer getIcon() { return EntryStacks.of(cigaretteMod.TOBACCO_WORKBENCH_ITEM); }
+        @Override public Component getTitle() { return Component.translatable("rei.category.SmokingWarningMod.tobacco_workbench"); }
+        @Override public Renderer getIcon() { return EntryStacks.of(SmokingWarningMod.TOBACCO_WORKBENCH_ITEM); }
         @Override public int getDisplayHeight() { return 36; }
         @Override public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {
             var widgets = new ArrayList<Widget>();
@@ -99,8 +99,8 @@ public class TobaccoReiPlugin implements REIClientPlugin {
 
     static class DryingRackCategory implements DisplayCategory<BasicDisplay> {
         @Override public CategoryIdentifier<BasicDisplay> getCategoryIdentifier() { return DRYING_RACK; }
-        @Override public Component getTitle() { return Component.translatable("rei.category.cigarettemod.drying_rack"); }
-        @Override public Renderer getIcon() { return EntryStacks.of(cigaretteMod.DRYING_RACK_ITEM); }
+        @Override public Component getTitle() { return Component.translatable("rei.category.SmokingWarningMod.drying_rack"); }
+        @Override public Renderer getIcon() { return EntryStacks.of(SmokingWarningMod.DRYING_RACK_ITEM); }
         @Override public int getDisplayHeight() { return 36; }
         @Override public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {
             var widgets = new ArrayList<Widget>();
@@ -115,8 +115,8 @@ public class TobaccoReiPlugin implements REIClientPlugin {
 
     static class TobaccoGrinderCategory implements DisplayCategory<BasicDisplay> {
         @Override public CategoryIdentifier<BasicDisplay> getCategoryIdentifier() { return TOBACCO_GRINDER; }
-        @Override public Component getTitle() { return Component.translatable("rei.category.cigarettemod.tobacco_grinder"); }
-        @Override public Renderer getIcon() { return EntryStacks.of(cigaretteMod.TOBACCO_GRINDER_ITEM); }
+        @Override public Component getTitle() { return Component.translatable("rei.category.SmokingWarningMod.tobacco_grinder"); }
+        @Override public Renderer getIcon() { return EntryStacks.of(SmokingWarningMod.TOBACCO_GRINDER_ITEM); }
         @Override public int getDisplayHeight() { return 36; }
         @Override public List<Widget> setupDisplay(BasicDisplay display, Rectangle bounds) {
             var widgets = new ArrayList<Widget>();

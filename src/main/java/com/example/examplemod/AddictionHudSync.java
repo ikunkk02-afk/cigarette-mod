@@ -27,10 +27,10 @@ public final class AddictionHudSync {
         int stage = data.addictionStage();
         boolean isSmoking = player.isUsingItem() && CigaretteItem.isCigarette(player.getUseItem());
         boolean hasCoughing = Config.ENABLE_COUGHING_EFFECT.getAsBoolean()
-                && (stage >= SmokingAddictionManager.STAGE_LIGHT || player.hasEffect(cigaretteMod.COUGHING));
+                && (stage >= SmokingAddictionManager.STAGE_LIGHT || player.hasEffect(SmokingWarningMod.COUGHING));
         boolean hasLungCancer = stage >= SmokingAddictionManager.STAGE_HEAVY
                 || data.lungCancerActive()
-                || player.hasEffect(cigaretteMod.LUNG_CANCER);
+                || player.hasEffect(SmokingWarningMod.LUNG_CANCER);
         return new AddictionHudSyncPayload(
                 data.smokedCigaretteCount(),
                 stage,

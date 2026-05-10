@@ -8,9 +8,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
 
 public final class AddictionHudRenderer {
-    private static final ResourceLocation ADDICTION_ICON = cigaretteMod.id("textures/gui/addiction_icon.png");
-    private static final ResourceLocation COUGHING_ICON = cigaretteMod.id("textures/gui/coughing_icon.png");
-    private static final ResourceLocation LUNG_CANCER_ICON = cigaretteMod.id("textures/gui/lung_cancer_icon.png");
+    private static final ResourceLocation ADDICTION_ICON = SmokingWarningMod.id("textures/gui/addiction_icon.png");
+    private static final ResourceLocation COUGHING_ICON = SmokingWarningMod.id("textures/gui/coughing_icon.png");
+    private static final ResourceLocation LUNG_CANCER_ICON = SmokingWarningMod.id("textures/gui/lung_cancer_icon.png");
     static final int DEFAULT_HUD_X = 8;
     static final int DEFAULT_HUD_Y = 8;
     static final float DEFAULT_HUD_SCALE = 1.0F;
@@ -136,9 +136,9 @@ public final class AddictionHudRenderer {
 
         int textX = 26;
         int lineY = 6;
-        graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.addiction").getString() + ": " + addictionProgressText(snapshot)), textX, lineY, 0xFFFFFFFF);
+        graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.addiction").getString() + ": " + addictionProgressText(snapshot)), textX, lineY, 0xFFFFFFFF);
         lineY += 10;
-        graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.stage").getString() + ": ").append(stageText(snapshot)), textX, lineY, 0xFFE8E8E8);
+        graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.stage").getString() + ": ").append(stageText(snapshot)), textX, lineY, 0xFFE8E8E8);
 
         int barX = 26;
         int barY = 29;
@@ -149,22 +149,22 @@ public final class AddictionHudRenderer {
 
         lineY = 39;
         if (snapshot.addictionStage() < SmokingAddictionManager.STAGE_HEAVY) {
-            graphics.drawString(font, Component.translatable("hud.cigarettemod.next_stage", nextStageRemaining(snapshot)), textX, lineY, 0xFFDCDCDC);
+            graphics.drawString(font, Component.translatable("hud.SmokingWarningMod.next_stage", nextStageRemaining(snapshot)), textX, lineY, 0xFFDCDCDC);
             lineY += 10;
         }
         if (snapshot.hasCoughing()) {
-            graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.status").getString() + ": ").append(Component.translatable("hud.cigarettemod.coughing")), textX, lineY, 0xFFFFE082);
+            graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.status").getString() + ": ").append(Component.translatable("hud.SmokingWarningMod.coughing")), textX, lineY, 0xFFFFE082);
             lineY += 10;
         }
         if (snapshot.hasLungCancer()) {
-            graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.status").getString() + ": ").append(Component.translatable("hud.cigarettemod.lung_cancer")), textX, lineY, 0xFFFF8A80);
+            graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.status").getString() + ": ").append(Component.translatable("hud.SmokingWarningMod.lung_cancer")), textX, lineY, 0xFFFF8A80);
             lineY += 10;
         }
         if (snapshot.hasLungCancer() && Config.SHOW_LUNG_CANCER_WARNING.getAsBoolean()) {
             Minecraft minecraft = Minecraft.getInstance();
             int tickCount = minecraft.player == null ? 0 : minecraft.player.tickCount;
             int warningColor = snapshot.isSmoking() && (tickCount / 10) % 2 == 0 ? 0xFFFF5555 : 0xFFFFB0B0;
-            graphics.drawString(font, Component.translatable("hud.cigarettemod.danger_smoking"), textX, lineY, warningColor);
+            graphics.drawString(font, Component.translatable("hud.SmokingWarningMod.danger_smoking"), textX, lineY, warningColor);
             lineY += 12;
         }
 
@@ -230,10 +230,10 @@ public final class AddictionHudRenderer {
 
     private static Component stageText(ClientAddictionHudData.Snapshot snapshot) {
         return switch (snapshot.addictionStage()) {
-            case SmokingAddictionManager.STAGE_LIGHT -> Component.translatable("hud.cigarettemod.stage.light");
-            case SmokingAddictionManager.STAGE_MEDIUM -> Component.translatable("hud.cigarettemod.stage.medium");
-            case SmokingAddictionManager.STAGE_HEAVY -> Component.translatable("hud.cigarettemod.stage.heavy");
-            default -> Component.translatable("hud.cigarettemod.stage.none");
+            case SmokingAddictionManager.STAGE_LIGHT -> Component.translatable("hud.SmokingWarningMod.stage.light");
+            case SmokingAddictionManager.STAGE_MEDIUM -> Component.translatable("hud.SmokingWarningMod.stage.medium");
+            case SmokingAddictionManager.STAGE_HEAVY -> Component.translatable("hud.SmokingWarningMod.stage.heavy");
+            default -> Component.translatable("hud.SmokingWarningMod.stage.none");
         };
     }
 
@@ -266,30 +266,30 @@ public final class AddictionHudRenderer {
     }
 
     private static int renderTreatmentHudLines(GuiGraphics graphics, Font font, ClientTreatmentData.Snapshot treatment, int textX, int lineY) {
-        graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.treatment.progress").getString() + ": " + treatment.treatmentProgress() + "%"), textX, lineY, 0xFF64B5F6);
+        graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.treatment.progress").getString() + ": " + treatment.treatmentProgress() + "%"), textX, lineY, 0xFF64B5F6);
         lineY += 10;
 
         String stageKey = switch (treatment.treatmentStage()) {
-            case LungCancerTreatmentManager.STAGE_DIAGNOSED -> "hud.cigarettemod.treatment.stage.diagnosed";
-            case LungCancerTreatmentManager.STAGE_CONTROL -> "hud.cigarettemod.treatment.stage.control";
-            case LungCancerTreatmentManager.STAGE_TREATING -> "hud.cigarettemod.treatment.stage.treating";
-            case LungCancerTreatmentManager.STAGE_REHAB -> "hud.cigarettemod.treatment.stage.rehab";
-            case LungCancerTreatmentManager.STAGE_REMISSION -> "hud.cigarettemod.treatment.stage.remission";
-            default -> "hud.cigarettemod.treatment.stage.none";
+            case LungCancerTreatmentManager.STAGE_DIAGNOSED -> "hud.SmokingWarningMod.treatment.stage.diagnosed";
+            case LungCancerTreatmentManager.STAGE_CONTROL -> "hud.SmokingWarningMod.treatment.stage.control";
+            case LungCancerTreatmentManager.STAGE_TREATING -> "hud.SmokingWarningMod.treatment.stage.treating";
+            case LungCancerTreatmentManager.STAGE_REHAB -> "hud.SmokingWarningMod.treatment.stage.rehab";
+            case LungCancerTreatmentManager.STAGE_REMISSION -> "hud.SmokingWarningMod.treatment.stage.remission";
+            default -> "hud.SmokingWarningMod.treatment.stage.none";
         };
-        graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.treatment.stage").getString() + ": ").append(Component.translatable(stageKey)), textX, lineY, 0xFFB0BEC5);
+        graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.treatment.stage").getString() + ": ").append(Component.translatable(stageKey)), textX, lineY, 0xFFB0BEC5);
         lineY += 10;
 
         if (treatment.treatmentStage() == LungCancerTreatmentManager.STAGE_REHAB && treatment.smokeFreeTicks() > 0) {
             int requiredTicks = Config.REHAB_REQUIRED_SMOKE_FREE_TICKS.getAsInt();
             int percent = Math.clamp((int) (treatment.smokeFreeTicks() * 100L / requiredTicks), 0, 100);
-            graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.treatment.smoke_free").getString() + ": " + percent + "%"), textX, lineY, 0xFF81C784);
+            graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.treatment.smoke_free").getString() + ": " + percent + "%"), textX, lineY, 0xFF81C784);
             lineY += 10;
         }
 
         if (treatment.treatmentCooldown() > 0) {
             int seconds = treatment.treatmentCooldown() / 20;
-            graphics.drawString(font, Component.literal(Component.translatable("hud.cigarettemod.treatment.cooldown").getString() + ": " + seconds + "s"), textX, lineY, 0xFFFFCC80);
+            graphics.drawString(font, Component.literal(Component.translatable("hud.SmokingWarningMod.treatment.cooldown").getString() + ": " + seconds + "s"), textX, lineY, 0xFFFFCC80);
             lineY += 10;
         }
 

@@ -1,0 +1,13 @@
+﻿{
+  "type": "smokingwarningmod:tobacco_workbench_recipe",
+  "first": {
+    "item": "smokingwarningmod:tobacco_shreds"
+  },
+  "second": {
+    "item": "minecraft:paper"
+  },
+  "result": {
+    "id": "smokingwarningmod:cigarette",
+    "count": 1
+  }
+}

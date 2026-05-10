@@ -1,0 +1,13 @@
+﻿{
+  "type": "smokingwarningmod:tobacco_workbench_recipe",
+  "first": {
+    "item": "smokingwarningmod:cigarette"
+  },
+  "second": {
+    "item": "minecraft:blaze_powder"
+  },
+  "result": {
+    "id": "smokingwarningmod:blaze_cigarette",
+    "count": 1
+  }
+}

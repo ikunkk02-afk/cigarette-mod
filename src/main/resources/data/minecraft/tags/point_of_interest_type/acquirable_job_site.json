@@ -1,6 +1,6 @@
-{
+﻿{
   "replace": false,
   "values": [
-    "cigarettemod:tobacco_workbench"
+    "smokingwarningmod:tobacco_workbench"
   ]
 }

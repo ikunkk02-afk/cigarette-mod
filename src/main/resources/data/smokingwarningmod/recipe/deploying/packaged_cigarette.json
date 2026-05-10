@@ -1,0 +1,23 @@
+﻿{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "smokingwarningmod:cigarette"
+    },
+    {
+      "item": "minecraft:paper"
+    }
+  ],
+  "results": [
+    {
+      "id": "smokingwarningmod:packaged_cigarette",
+      "count": 1
+    }
+  ]
+}

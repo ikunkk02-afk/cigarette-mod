@@ -1,0 +1,8 @@
+﻿{
+  "parent": "smokingwarningmod:block/drying_rack_leaves_fresh_sparse",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "smokingwarningmod:block/drying_rack_leaf_dry",
+    "leaf": "smokingwarningmod:block/drying_rack_leaf_dry"
+  }
+}

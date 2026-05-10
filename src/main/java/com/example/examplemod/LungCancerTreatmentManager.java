@@ -21,7 +21,7 @@ public final class LungCancerTreatmentManager {
     public static boolean isHeavyAddictionOrLungCancer(ServerPlayer player) {
         PlayerSmokingData data = PlayerSmokingData.get(player);
         return data.addictionStage() >= SmokingAddictionManager.STAGE_HEAVY
-                || player.hasEffect(cigaretteMod.LUNG_CANCER)
+                || player.hasEffect(SmokingWarningMod.LUNG_CANCER)
                 || data.lungCancerActive();
     }
 
@@ -33,19 +33,19 @@ public final class LungCancerTreatmentManager {
         PlayerSmokingData data = PlayerSmokingData.get(player);
 
         if (data.diagnosedLungCancer()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.already_diagnosed"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.already_diagnosed"), true);
             return false;
         }
 
         if (!isHeavyAddictionOrLungCancer(player)) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.no_disease"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.no_disease"), true);
             return false;
         }
 
         data.setDiagnosedLungCancer(true);
         data.setTreatmentStage(STAGE_DIAGNOSED);
         data.setTreatmentProgress(0);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.diagnosed"), false);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.diagnosed"), false);
         player.serverLevel().playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 0.5F, 1.8F);
         syncToClient(player);
         return true;
@@ -53,24 +53,24 @@ public final class LungCancerTreatmentManager {
 
     public static boolean canUseTreatmentItem(ServerPlayer player) {
         if (!Config.ENABLE_LUNG_CANCER_TREATMENT.getAsBoolean()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.disabled"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.disabled"), true);
             return false;
         }
 
         PlayerSmokingData data = PlayerSmokingData.get(player);
 
         if (!data.diagnosedLungCancer()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.not_diagnosed"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.not_diagnosed"), true);
             return false;
         }
 
         if (data.treatmentStage() >= STAGE_REMISSION) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.already_remission"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.already_remission"), true);
             return false;
         }
 
         if (data.treatmentCooldown() > 0) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.cooldown"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.cooldown"), true);
             return false;
         }
 
@@ -90,7 +90,7 @@ public final class LungCancerTreatmentManager {
         }
         applyTreatmentCooldown(data);
         applyChemoSideEffects(player);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.chemo"), false);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.chemo"), false);
         syncToClient(player);
         return true;
     }
@@ -103,7 +103,7 @@ public final class LungCancerTreatmentManager {
         PlayerSmokingData data = PlayerSmokingData.get(player);
 
         if (data.treatmentProgress() < 20) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.need_more_progress"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.need_more_progress"), true);
             return false;
         }
 
@@ -114,7 +114,7 @@ public final class LungCancerTreatmentManager {
         }
         applyTreatmentCooldown(data);
         applyRadioSideEffects(player);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.radio"), false);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.radio"), false);
         syncToClient(player);
         return true;
     }
@@ -127,7 +127,7 @@ public final class LungCancerTreatmentManager {
         PlayerSmokingData data = PlayerSmokingData.get(player);
 
         if (data.treatmentProgress() < 40) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.need_more_progress"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.need_more_progress"), true);
             return false;
         }
 
@@ -135,14 +135,14 @@ public final class LungCancerTreatmentManager {
         data.setTreatmentProgress(Math.min(100, data.treatmentProgress() + progress));
         applyTreatmentCooldown(data);
         applyTargetedTherapySideEffects(player);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.targeted"), false);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.targeted"), false);
         syncToClient(player);
         return true;
     }
 
     public static boolean applyRehabilitation(ServerPlayer player) {
         if (!Config.ENABLE_LUNG_CANCER_TREATMENT.getAsBoolean()) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.disabled"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.disabled"), true);
             return false;
         }
 
@@ -153,18 +153,18 @@ public final class LungCancerTreatmentManager {
         }
 
         if (data.treatmentProgress() < 80) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.need_more_progress"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.need_more_progress"), true);
             return false;
         }
 
         if (data.treatmentStage() == STAGE_REHAB) {
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.already_rehab"), true);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.already_rehab"), true);
             return false;
         }
 
         data.setTreatmentStage(STAGE_REHAB);
         data.setSmokeFreeTicks(0);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.rehab_start"), false);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.rehab_start"), false);
         syncToClient(player);
         return true;
     }
@@ -193,7 +193,7 @@ public final class LungCancerTreatmentManager {
         data.setTreatmentStage(STAGE_REMISSION);
         data.setSmokeFreeTicks(0);
         data.setDiagnosedLungCancer(false);
-        player.removeEffect(cigaretteMod.LUNG_CANCER);
+        player.removeEffect(SmokingWarningMod.LUNG_CANCER);
         data.setLungCancerActive(false);
 
         int targetCount = Config.TREATMENT_SUCCESS_SET_SMOKE_COUNT.getAsInt();
@@ -206,7 +206,7 @@ public final class LungCancerTreatmentManager {
         SmokingAddictionManager.tick(player, data);
 
         player.serverLevel().playSound(null, player.blockPosition(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.8F, 1.0F);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.rehab_complete"), false);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.rehab_complete"), false);
         syncToClient(player);
     }
 
@@ -226,17 +226,17 @@ public final class LungCancerTreatmentManager {
             data.setTreatmentProgress(Math.max(0, data.treatmentProgress() - penalty));
             data.setSmokeFreeTicks(0);
             data.setTreatmentFailedRecently(true);
-            if (!player.hasEffect(cigaretteMod.LUNG_CANCER)) {
-                player.addEffect(new MobEffectInstance(cigaretteMod.LUNG_CANCER, 1200, 0, false, true, true));
+            if (!player.hasEffect(SmokingWarningMod.LUNG_CANCER)) {
+                player.addEffect(new MobEffectInstance(SmokingWarningMod.LUNG_CANCER, 1200, 0, false, true, true));
             }
             data.setLungCancerActive(true);
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.rehab_failed"), false);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.rehab_failed"), false);
         } else {
             int penalty = Config.SMOKING_DURING_TREATMENT_PROGRESS_PENALTY.getAsInt();
             data.setTreatmentProgress(Math.max(0, data.treatmentProgress() - penalty));
             data.setSmokeFreeTicks(0);
             data.setTreatmentFailedRecently(true);
-            player.displayClientMessage(Component.translatable("message.cigarettemod.treatment.smoking_setback"), false);
+            player.displayClientMessage(Component.translatable("message.SmokingWarningMod.treatment.smoking_setback"), false);
         }
 
         syncToClient(player);

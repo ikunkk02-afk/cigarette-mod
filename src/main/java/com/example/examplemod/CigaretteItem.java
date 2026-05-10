@@ -85,7 +85,7 @@ public class CigaretteItem extends Item {
         ItemStack lighter = findLighter(player);
         if (lighter.isEmpty()) {
             if (!level.isClientSide()) {
-                player.displayClientMessage(Component.translatable("message.cigarettemod.need_lighter"), true);
+                player.displayClientMessage(Component.translatable("message.SmokingWarningMod.need_lighter"), true);
             }
             return InteractionResultHolder.fail(stack);
         }
@@ -98,9 +98,9 @@ public class CigaretteItem extends Item {
                 });
             }
             if (this.variant == CigaretteVariant.RICK_V && Config.ENABLE_RICK_V_EASTER_EGG.getAsBoolean()) {
-                level.playSound(null, player.blockPosition(), cigaretteMod.RICK_V_EASTER_EGG.get(), SoundSource.PLAYERS, 0.75F, 1.0F);
+                level.playSound(null, player.blockPosition(), SmokingWarningMod.RICK_V_EASTER_EGG.get(), SoundSource.PLAYERS, 0.75F, 1.0F);
             } else {
-                level.playSound(null, player.blockPosition(), cigaretteMod.LIGHTER_USE.get(), SoundSource.PLAYERS, 0.65F, 1.0F);
+                level.playSound(null, player.blockPosition(), SmokingWarningMod.LIGHTER_USE.get(), SoundSource.PLAYERS, 0.65F, 1.0F);
             }
             player.displayClientMessage(Component.translatable(this.variant.startMessageKey()), true);
         }
@@ -140,12 +140,12 @@ public class CigaretteItem extends Item {
 
     private static ItemStack findLighter(Player player) {
         ItemStack offhand = player.getOffhandItem();
-        if (offhand.is(cigaretteMod.LIGHTER.get())) {
+        if (offhand.is(SmokingWarningMod.LIGHTER.get())) {
             return offhand;
         }
 
         for (ItemStack inventoryStack : player.getInventory().items) {
-            if (inventoryStack.is(cigaretteMod.LIGHTER.get())) {
+            if (inventoryStack.is(SmokingWarningMod.LIGHTER.get())) {
                 return inventoryStack;
             }
         }
@@ -178,7 +178,7 @@ public class CigaretteItem extends Item {
                 applyRewardWithAddictionDecay(player, MobEffects.DAMAGE_BOOST, SHORT_EFFECT_DURATION_TICKS, 0);
                 if (smokingTicks % 600 == 0 && player.getHealth() > 2.0F) {
                     player.hurt(player.damageSources().magic(), 1.0F);
-                    player.displayClientMessage(Component.translatable("message.cigarettemod.blaze_burn"), true);
+                    player.displayClientMessage(Component.translatable("message.SmokingWarningMod.blaze_burn"), true);
                 }
             }
             case PHANTOM -> {
@@ -287,14 +287,14 @@ public class CigaretteItem extends Item {
                 applyRewardWithAddictionDecay(player, MobEffects.DAMAGE_RESISTANCE, duration, 0, projectedAddictionWeight);
                 applyRewardWithAddictionDecay(player, MobEffects.DIG_SPEED, duration, 0, projectedAddictionWeight);
                 applyRewardWithAddictionDecay(player, MobEffects.LUCK, duration, 0, projectedAddictionWeight);
-                notifyNearby(player, "message.cigarettemod.huazi.nearby");
+                notifyNearby(player, "message.SmokingWarningMod.huazi.nearby");
             }
             case LOTUS -> {
                 applyRewardWithAddictionDecay(player, MobEffects.MOVEMENT_SPEED, duration, 1, projectedAddictionWeight);
                 applyRewardWithAddictionDecay(player, MobEffects.NIGHT_VISION, duration, 0, projectedAddictionWeight);
                 applyRewardWithAddictionDecay(player, MobEffects.JUMP, duration, 0, projectedAddictionWeight);
                 applyRewardWithAddictionDecay(player, MobEffects.SLOW_FALLING, duration, 0, projectedAddictionWeight);
-                notifyNearby(player, "message.cigarettemod.lotus.nearby");
+                notifyNearby(player, "message.SmokingWarningMod.lotus.nearby");
             }
         }
     }
@@ -376,7 +376,7 @@ public class CigaretteItem extends Item {
             stage = Math.max(stage, SmokingAddictionManager.STAGE_LIGHT);
         }
 
-        if (player.hasEffect(cigaretteMod.LUNG_CANCER) || data.lungCancerActive()) {
+        if (player.hasEffect(SmokingWarningMod.LUNG_CANCER) || data.lungCancerActive()) {
             stage = SmokingAddictionManager.STAGE_HEAVY;
         }
         return stage;
@@ -393,7 +393,7 @@ public class CigaretteItem extends Item {
             return player.hasEffect(MobEffects.WEAKNESS) || stage >= SmokingAddictionManager.STAGE_MEDIUM;
         }
         if (effect == MobEffects.REGENERATION) {
-            return player.hasEffect(cigaretteMod.LUNG_CANCER) || stage >= SmokingAddictionManager.STAGE_HEAVY;
+            return player.hasEffect(SmokingWarningMod.LUNG_CANCER) || stage >= SmokingAddictionManager.STAGE_HEAVY;
         }
         if (effect == MobEffects.SATURATION) {
             return player.hasEffect(MobEffects.HUNGER) || stage >= SmokingAddictionManager.STAGE_MEDIUM;
@@ -424,9 +424,9 @@ public class CigaretteItem extends Item {
 
     private static void sendRewardDecayMessage(ServerPlayer player, int stage) {
         String messageKey = switch (stage) {
-            case SmokingAddictionManager.STAGE_LIGHT -> "message.cigarettemod.reward_decay.light";
-            case SmokingAddictionManager.STAGE_MEDIUM -> "message.cigarettemod.reward_decay.medium";
-            case SmokingAddictionManager.STAGE_HEAVY -> "message.cigarettemod.reward_decay.heavy";
+            case SmokingAddictionManager.STAGE_LIGHT -> "message.SmokingWarningMod.reward_decay.light";
+            case SmokingAddictionManager.STAGE_MEDIUM -> "message.SmokingWarningMod.reward_decay.medium";
+            case SmokingAddictionManager.STAGE_HEAVY -> "message.SmokingWarningMod.reward_decay.heavy";
             default -> null;
         };
         if (messageKey != null) {
@@ -435,7 +435,7 @@ public class CigaretteItem extends Item {
     }
 
     private static void sendRewardConflictMessage(ServerPlayer player) {
-        sendCooldownMessage(player, REWARD_CONFLICT_NOTICE_TIMES, "message.cigarettemod.reward_conflict_blocked");
+        sendCooldownMessage(player, REWARD_CONFLICT_NOTICE_TIMES, "message.SmokingWarningMod.reward_conflict_blocked");
     }
 
     private static void sendCooldownMessage(ServerPlayer player, Map<UUID, Long> cooldowns, String messageKey) {
@@ -451,11 +451,11 @@ public class CigaretteItem extends Item {
 
     private static void playRickVFinish(ServerPlayer player) {
         ServerLevel level = player.serverLevel();
-        level.playSound(null, player.blockPosition(), cigaretteMod.RICK_V_EASTER_EGG.get(), SoundSource.PLAYERS, 0.95F, 0.85F + player.getRandom().nextFloat() * 0.2F);
-        player.displayClientMessage(Component.translatable("message.cigarettemod.rick_v.chat"), false);
+        level.playSound(null, player.blockPosition(), SmokingWarningMod.RICK_V_EASTER_EGG.get(), SoundSource.PLAYERS, 0.95F, 0.85F + player.getRandom().nextFloat() * 0.2F);
+        player.displayClientMessage(Component.translatable("message.SmokingWarningMod.rick_v.chat"), false);
         for (ServerPlayer otherPlayer : level.players()) {
             if (otherPlayer != player && otherPlayer.distanceToSqr(player) <= 16.0D * 16.0D) {
-                otherPlayer.displayClientMessage(Component.translatable("message.cigarettemod.rick_v.nearby"), false);
+                otherPlayer.displayClientMessage(Component.translatable("message.SmokingWarningMod.rick_v.nearby"), false);
             }
         }
     }
@@ -507,18 +507,18 @@ public class CigaretteItem extends Item {
     }
 
     public enum CigaretteVariant {
-        REGULAR("message.cigarettemod.smoking_started", "message.cigarettemod.finish.regular", Config.DEFAULT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_CIGARETTE_DURABILITY, 1, 1, 0, 1),
-        MENTHOL("message.cigarettemod.smoking_started.menthol", "message.cigarettemod.finish.menthol", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 2, 1, 1, 1),
-        HONEY("message.cigarettemod.smoking_started.honey", "message.cigarettemod.finish.honey", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 2, 2, 1, 1),
-        BLAZE("message.cigarettemod.smoking_started.blaze", "message.cigarettemod.finish.blaze", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 3, 2, 1),
-        PHANTOM("message.cigarettemod.smoking_started.phantom", "message.cigarettemod.finish.phantom", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 2, 2, 1),
-        ENDER("message.cigarettemod.smoking_started.ender", "message.cigarettemod.finish.ender", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 4, 3, 3, 1),
-        GLOW("message.cigarettemod.smoking_started.glow", "message.cigarettemod.finish.glow", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 3, 2, 1),
-        REDSTONE("message.cigarettemod.smoking_started.redstone", "message.cigarettemod.finish.redstone", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 4, 4, 3, 1),
-        NETHERITE("message.cigarettemod.smoking_started.netherite", "message.cigarettemod.finish.netherite", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 6, 5, 4, 1),
-        RICK_V("message.cigarettemod.smoking_started.rick_v", "message.cigarettemod.rick_v.finish", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_RICK_V_CIGARETTE_DURABILITY, 0, 0, 0, 3),
-        HUAZI("message.cigarettemod.smoking_started", "message.cigarettemod.huazi.finish", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 2, 1, 1),
-        LOTUS("message.cigarettemod.smoking_started", "message.cigarettemod.lotus.finish", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 2, 1, 1, 1);
+        REGULAR("message.SmokingWarningMod.smoking_started", "message.SmokingWarningMod.finish.regular", Config.DEFAULT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_CIGARETTE_DURABILITY, 1, 1, 0, 1),
+        MENTHOL("message.SmokingWarningMod.smoking_started.menthol", "message.SmokingWarningMod.finish.menthol", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 2, 1, 1, 1),
+        HONEY("message.SmokingWarningMod.smoking_started.honey", "message.SmokingWarningMod.finish.honey", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 2, 2, 1, 1),
+        BLAZE("message.SmokingWarningMod.smoking_started.blaze", "message.SmokingWarningMod.finish.blaze", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 3, 2, 1),
+        PHANTOM("message.SmokingWarningMod.smoking_started.phantom", "message.SmokingWarningMod.finish.phantom", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 2, 2, 1),
+        ENDER("message.SmokingWarningMod.smoking_started.ender", "message.SmokingWarningMod.finish.ender", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 4, 3, 3, 1),
+        GLOW("message.SmokingWarningMod.smoking_started.glow", "message.SmokingWarningMod.finish.glow", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 3, 2, 1),
+        REDSTONE("message.SmokingWarningMod.smoking_started.redstone", "message.SmokingWarningMod.finish.redstone", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 4, 4, 3, 1),
+        NETHERITE("message.SmokingWarningMod.smoking_started.netherite", "message.SmokingWarningMod.finish.netherite", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 6, 5, 4, 1),
+        RICK_V("message.SmokingWarningMod.smoking_started.rick_v", "message.SmokingWarningMod.rick_v.finish", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_RICK_V_CIGARETTE_DURABILITY, 0, 0, 0, 3),
+        HUAZI("message.SmokingWarningMod.smoking_started", "message.SmokingWarningMod.huazi.finish", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 3, 2, 1, 1),
+        LOTUS("message.SmokingWarningMod.smoking_started", "message.SmokingWarningMod.lotus.finish", Config.DEFAULT_VARIANT_FULL_SMOKING_DURATION_TICKS, Config.DEFAULT_VARIANT_CIGARETTE_DURABILITY, 2, 1, 1, 1);
 
         private final String startMessageKey;
         private final String finishMessageKey;
